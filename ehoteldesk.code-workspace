@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+        "runOnSave.statusMessageTimeout": 3000,
+        "runOnSave.commands": [
+            {
+                "match": ".*\\.scss$",
+                "notMatch": "[\\\\\\/]t[^\\\\\\/]*\\.scss$",
+                "command": "C:\\bin\\dart-sass\\sass.bat --style=compressed ${workspaceFolder}\\webroot\\sass\\main.scss ${workspaceFolder}\\webroot\\css\\main.css",
+                "runIn": "terminal",
+                "runningStatusMessage": "Compiling CSS",
+                "finishStatusMessage": "CSS compiled"
+            }
+        ],
+
+        "phpcs.executablePath": "vendor\\bin\\phpcs.bat",
+        "phpcs.standard": "vendor\\cakephp\\cakephp-codesniffer\\CakePHP",
+
+        "phpunit.php": "C:\\xampp\\php\\php.exe",
+        "phpunit.phpunit": "vendor\\phpunit\\phpunit\\phpunit",
+        "phpunit.args": [
+            "--configuration", "./phpunit.xml.dist"
+        ]
+    }
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!--Korenski imenik, ki vsebuje podatke o prenočitvah gostov-->
+  <xs:element name="knjigaGostov">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="row">
+          <xs:complexType>
+            <!--identifikacijska številka nastanitvenega obrata v registru nastanitvenih obratov-->
+            <xs:attribute name="idNO" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="0" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--zaporedna številka gosta v knjigi gostov-->
+            <xs:attribute name="zst" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="1" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--ime gosta-->
+            <xs:attribute name="ime" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="2" />
+                  <xs:maxLength value="141" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--priimek gosta-->
+            <xs:attribute name="pri" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength  value="2" />
+                  <xs:maxLength value="141" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--spol (M = moški, F = ženski-->
+            <xs:attribute name="sp" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="M" />
+                  <xs:enumeration value="F" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--rojstni datum gosta-->
+            <xs:attribute name="dtRoj" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:date">
+                  <xs:minInclusive value="1800-01-01" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--koda države državljanstva gosta-->
+            <xs:attribute name="drzava" type="xs:string" use="required" />
+            <!--vrsta gostovega identifikacijskega dokumenta -->
+            <xs:attribute name="vrstaDok" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="F" />
+                  <xs:enumeration value="H" />
+                  <xs:enumeration value="I" />
+                  <xs:enumeration value="O" />
+                  <xs:enumeration value="P" />
+                  <xs:enumeration value="U" />
+                  <xs:enumeration value="V" />
+                  <xs:enumeration value="L" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--identifikacijska številka dokumenta-->
+            <xs:attribute name="idStDok" type="xs:string" use="required" />
+            <!--čas prihoda gosta (format: yyyy-MM-DDThh:mm:ss primer: 2017-05-16T07:21:42)-->
+            <xs:attribute name="casPrihoda" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:dateTime">
+                  <xs:minInclusive value="2017-01-01T00:00:00" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--čas odhoda gosta (podatek ni zahteven. Format kot pri času prihoda. V primeru, ko ne želite posredovati časa, naj bodo ure minute in sekunde 0. Primer: 2017-05-16T00:00:00 )-->
+            <xs:attribute name="casOdhoda" use="optional">
+              <xs:simpleType>
+                <xs:restriction base="xs:dateTime">
+                  <xs:minInclusive value="2017-01-01T00:00:00" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--status: 1 = veljaven, 2 = storno-->
+            <xs:attribute name="status" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="1" />
+                  <xs:maxInclusive value="2" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--razlog oprostitve ali delnega plačila turistične takse-->
+            <xs:attribute name="ttObracun" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:minInclusive value="0" />
+                  <xs:maxInclusive value="19" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <!--višina polne turistične takse (EUR). Največ 4 decimalna mesta.-->
+            <xs:attribute name="ttVisina" type="xs:decimal" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

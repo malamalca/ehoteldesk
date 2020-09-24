@@ -1,0 +1,265 @@
+.small {
+    font-size: 80%;
+}
+
+#ReservationsEditForm fieldset {
+    display: block;
+    width: 500px !important;
+    background-color: #FFEEFF !important;
+}
+
+#RegistrationsEditForm fieldset {
+    display: block;
+    width: 500px !important;
+    background-color: #EEFFEE !important;
+}
+
+/* Autocomplete Client */
+span.ac_client_label {
+    display: block;
+    float: left;
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+span.ac_client_address {
+    display: block;
+    float: left;
+    clear: right;
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 60%;
+}
+
+input.locked {
+    background-color: #F0F0F0;
+    background-image: url(img/link.gif);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+/* Reservations Index */
+#ReservationsOverview th.day {
+    width: 32px !important;
+    text-align: center;
+    padding: 0px;
+}
+#ReservationsOverview th.day span {
+    display: block;
+    width: 30px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 80%;
+    margin: 0px;
+}
+
+#ReservationsOverview td.day {
+	width: 30px !important;
+    text-align: center;
+    padding: 0px;
+    border-left: solid 1px #c4c4c4;
+    padding: 0px !important;
+}
+
+#ReservationsOverview td.day_half {
+	width: 15px !important;
+}
+
+#ReservationsOverview td.day a {
+    display: inline-block;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0px;
+    margin: 0px;
+}
+#ReservationsOverview td.highlight {
+	background-color: #FFFFAA !important;
+}
+
+#ReservationsOverview td.reserved {
+	background-color: #FFAAFF !important;
+}
+#ReservationsOverview td.registered {
+	background-color: #AAFFAA !important;
+}
+
+
+fieldset#ReservationDates div, div#RegistrationDates div {
+    display: block;
+    float: left;
+    width: 195px;
+    clear: none;
+    margin-right: 10px;
+}
+div#RegistrationDates div input {
+    width: 190px;
+	height: 22px;
+	margin-right: 5px;
+}
+
+/* General form*/
+fieldset#ReservationDates div div.error-message,
+div#RegistrationDates div div.error-message {
+    float: none !important;
+    clear: right;
+}
+
+div#ReservationsEditNo {
+    padding-left: 20px;
+}
+
+input#name, input#address, select#country-code {
+    width: 390px;
+}
+
+/* Registrations */
+#registration-details-set,
+#registration-client-set
+{
+    display: block;
+    float: left;
+}
+
+#RegistrationsEditForm select#room-id,
+#RegistrationsEditForm select#service-id,
+#RegistrationsEditForm select#ident-kind,
+#RegistrationsEditForm input#ident-no,
+#RegistrationsEditForm select#ttax-kind,
+#RegistrationsEditForm input#ttax-amount
+{
+    width: 390px;
+}
+
+#RegistrationsEditForm input#client
+{
+    width: 355px;
+    font-size: 25px;
+}
+#client-btn-search, #client-btn-edit {
+    margin-top: -10px;
+}
+#client-btn-search,
+#client-btn-edit
+{
+    padding: 5px 10px;
+}
+
+#RegistrationsEditForm input#client-street
+{
+    width: 210px;
+    height: 16px;
+    background-color: #f0f0f0;
+}
+#RegistrationsEditForm input#client-zip
+{
+    width: 45px;
+    height: 16px;
+    background-color: #f0f0f0;
+}
+#RegistrationsEditForm input#client-city
+{
+    width: 100px;
+    height: 16px;
+    background-color: #f0f0f0;
+}
+#RegistrationsEditForm input#client-country_code
+{
+    width: 25px;
+    height: 16px;
+    background-color: #f0f0f0;
+}
+
+#RegistrationsEditForm input#client-dob,
+#RegistrationsEditForm input#client-plob
+{
+    width: 194px;
+    height: 16px;
+    background-color: #f0f0f0;
+}
+
+#RegistrationDates div.lil-date
+{
+    width: 200px;
+    float: left;
+    clear: none !important;
+}
+
+
+/*#client-name-surname div,
+#client-address-zip_city,
+#client-dob-plob div {
+    float: left;
+    clear: none;
+}
+#client-dob-plob div div {
+    float: none;
+}
+
+#client-country_code-country div {
+    float: left;
+    clear: none;
+}
+input#client-address-country_code {
+    width: 50px;
+    margin-right: 10px;
+}
+select#client-address-country_code-select {
+    width: 330px;
+}
+
+#client-name-surname input#client-surname,
+#client-address-zip_city input#client-address-zip,
+#client-dob-plob input#client-dob
+{
+	width: 190px;
+	height: 22px;
+	margin-right: 5px;
+}
+#client-name-surname input#client-name,
+#client-address-zip_city input#client-address-city,
+#client-dob-plob input#client-plob
+{
+	width: 190px;
+	height: 22px;
+}
+
+a.autocomplete-custom-header-button-100 {
+    width: 100%;
+}*/
+
+/* ////////////////////////////////////////////// */
+#ContactsHistoryPanel {
+    margin-left: 0px;
+}
+
+#InvoiceEditForm #receiver-title,
+#InvoiceEditForm #receiver-street,
+#InvoiceEditForm #receiver-country-code,
+#InvoiceEditForm #receiver-taxno
+{
+    width: 400px;
+}
+#InvoiceEditForm #receiver-zip
+{
+    width: 150px;
+}
+#InvoiceEditForm #receiver-city
+{
+    width: 245px;
+}
+#InvoiceEditForm #descript
+{
+    width: 750px;
+}
+
+#eturizem-error-details {
+    display: none;
+}
+#eturizem-error-details * {
+    font-weight: normal;
+    font-size: 10px;
+}
