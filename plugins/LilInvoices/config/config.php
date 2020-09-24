@@ -29,7 +29,7 @@ return ['LilInvoices' => [
     'sepaTypes' => $sepaTypes,
     'documentTypes' => $documentTypes,
     'invoiceDocTypes' => ['IV', 'AAB', 'CD'],
-    'pdfEngine' => 'WKHTML2PDF',
+    'pdfEngine' => 'TCPDF',
     'TCPDF' => [
         'user-style-sheet' => dirname(dirname(__FILE__)) . DS . 'webroot' . DS . 'css' . DS . 'lil_invoices_pdf.css',
     ],
