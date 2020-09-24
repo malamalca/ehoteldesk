@@ -8,7 +8,7 @@ Simple open source PHP hotel desk web application built with latest technologies
 
 The source code can be found here: [malamalca/ehoteldesk](https://github.com/malamalca/ehoteldesk).
 
-![alt text](https://github.com/malamalca/ehoteldesk/raw/master/example.png)
+![alt text](https://github.com/malamalca/ehoteldesk/raw/master/resources/screenshot.png)
 
 ## Installing eHotelDesk via Composer
 
