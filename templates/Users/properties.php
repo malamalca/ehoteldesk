@@ -92,6 +92,35 @@ $userForm = [
             ],
             'fs_login_end' => '</fieldset>',
 
+
+            'fs_eturizem_start' => '<fieldset>',
+            'lg_eturizem' => sprintf('<legend>%s</legend>', __('eTurizem')),
+            'etur_p12' => [
+                'method' => 'control',
+                'parameters' => ['etur_p12_file', [
+                    'type' => 'file',
+                    'label' => [
+                        'text' => __('Certificate') . ':',
+                        'class' => 'active'
+                    ],
+                ]]
+            ],
+            'etur_username' => [
+                'method' => 'control',
+                'parameters' => ['etur_username', [
+                    'type' => 'text',
+                    'label' => __('Username') . ':',
+                ]]
+            ],
+            'etur_password' => [
+                'method' => 'control',
+                'parameters' => ['etur_password', [
+                    'type' => 'text',
+                    'label' => __('Password') . ':',
+                ]]
+            ],
+            'fs_login_end' => '</fieldset>',
+
             'submit' => [
                 'method' => 'submit',
                 'parameters' => [

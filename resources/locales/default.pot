@@ -1,0 +1,1359 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2020-09-24 12:22+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/CompaniesController.php:117
+msgid "The company has been saved."
+msgstr ""
+
+#: Controller/CompaniesController.php:125
+msgid "The company could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/CompaniesController.php:145
+msgid "The company has been deleted."
+msgstr ""
+
+#: Controller/CompaniesController.php:147
+msgid "The company could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/CountersController.php:84
+msgid "The counter has been saved."
+msgstr ""
+
+#: Controller/CountersController.php:88
+msgid "The counter could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/CountersController.php:116
+msgid "The counter has been deleted."
+msgstr ""
+
+#: Controller/CountersController.php:118
+msgid "The counter could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/EturizemController.php:37
+#: Controller/EturizemController.php:129
+msgid "No eTurizem certificate found. Please upload your certificate."
+msgstr ""
+
+#: Controller/EturizemController.php:55
+msgid "There are no registrations starting with specified date."
+msgstr ""
+
+#: Controller/EturizemController.php:77
+#: Controller/EturizemController.php:161
+msgid "There are errors in XML. Please check your data"
+msgstr ""
+
+#: Controller/EturizemController.php:93
+#: Controller/EturizemController.php:176
+msgid "ETurizem data has been successfully sent."
+msgstr ""
+
+#: Controller/EturizemController.php:98
+#: Controller/EturizemController.php:181
+msgid "An error occured while sending your data."
+msgstr ""
+
+#: Controller/EturizemController.php:140
+msgid "Counter not found"
+msgstr ""
+
+#: Controller/RegistrationsController.php:81
+#: Controller/RegistrationsController.php:166
+msgid "Cannot edit registration that was already sent to ETurizem."
+msgstr ""
+
+#: Controller/RegistrationsController.php:129
+msgid "The registration has been saved."
+msgstr ""
+
+#: Controller/RegistrationsController.php:134
+msgid "The registration could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/RegistrationsController.php:140
+msgid "No rooms defined. Please add a first counter."
+msgstr ""
+
+#: Controller/RegistrationsController.php:172
+msgid "The registration has been deleted."
+msgstr ""
+
+#: Controller/RegistrationsController.php:174
+msgid "The registration could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/ReservationsController.php:153
+msgid "The reservation has been saved."
+msgstr ""
+
+#: Controller/ReservationsController.php:160
+msgid "The reservation could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/ReservationsController.php:184
+msgid "The reservation has been deleted."
+msgstr ""
+
+#: Controller/ReservationsController.php:186
+msgid "The reservation could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/ReservationsController.php:211
+#: Controller/ReservationsController.php:218
+msgid "The invoices counter does not exist."
+msgstr ""
+
+#: Controller/ReservationsController.php:224
+msgid "Reservations Invoice"
+msgstr ""
+
+#: Controller/ReservationsController.php:246
+msgid "days"
+msgstr ""
+
+#: Controller/RoomTypesController.php:81
+msgid "The room type has been saved."
+msgstr ""
+
+#: Controller/RoomTypesController.php:85
+msgid "The room type could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/RoomTypesController.php:106
+msgid "The room type has been deleted."
+msgstr ""
+
+#: Controller/RoomTypesController.php:110
+msgid "The room type is linked to a room and cannot be deleted."
+msgstr ""
+
+#: Controller/RoomTypesController.php:113
+msgid "The room type could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/RoomsController.php:89
+msgid "The room has been saved."
+msgstr ""
+
+#: Controller/RoomsController.php:93
+msgid "The room could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/RoomsController.php:127
+msgid "The room has been deleted."
+msgstr ""
+
+#: Controller/RoomsController.php:131
+msgid "The room is linked to a reservation and cannot be deleted."
+msgstr ""
+
+#: Controller/RoomsController.php:134
+msgid "The room could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/ServiceTypesController.php:82
+msgid "The service type has been saved."
+msgstr ""
+
+#: Controller/ServiceTypesController.php:86
+msgid "The service type could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/ServiceTypesController.php:108
+msgid "The service type has been deleted."
+msgstr ""
+
+#: Controller/ServiceTypesController.php:110
+msgid "The service type could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:116
+msgid "An email with password reset instructions has been sent."
+msgstr ""
+
+#: Controller/UsersController.php:118
+msgid "No user with specified email has been found."
+msgstr ""
+
+#: Controller/UsersController.php:136
+msgid "Reset key does not exist."
+msgstr ""
+
+#: Controller/UsersController.php:146
+msgid "User does not exist."
+msgstr ""
+
+#: Controller/UsersController.php:153
+msgid "Password has been changed."
+msgstr ""
+
+#: Controller/UsersController.php:156
+msgid "Please verify that the information is correct."
+msgstr ""
+
+#: Controller/UsersController.php:268
+msgid "The user has been saved."
+msgstr ""
+
+#: Controller/UsersController.php:272
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:326
+msgid "Properties have been saved."
+msgstr ""
+
+#: Controller/UsersController.php:330
+msgid "Properties could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:352
+msgid "The user has been deleted."
+msgstr ""
+
+#: Controller/UsersController.php:354
+msgid "The user could not be deleted. Please, try again."
+msgstr ""
+
+#: Lib/AppSidebar.php:37
+#: Lib/AppSidebar.php:100
+#: Reservations/preview_invoice.php:16
+msgid "Reservations"
+msgstr ""
+
+#: Lib/AppSidebar.php:47
+#: Lib/AppSidebar.php:110
+msgid "Registrations"
+msgstr ""
+
+#: Lib/AppSidebar.php:57
+msgid "Contacts"
+msgstr ""
+
+#: Lib/AppSidebar.php:67
+#: Counters/edit.php:80
+msgid "Invoices"
+msgstr ""
+
+#: Lib/AppSidebar.php:79
+#: Companies/index.php:3
+msgid "Companies"
+msgstr ""
+
+#: Lib/AppSidebar.php:89
+msgid "Reports"
+msgstr ""
+
+#: Lib/AppSidebar.php:120
+msgid "Services"
+msgstr ""
+
+#: Lib/AppSidebar.php:130
+msgid "Guests"
+msgstr ""
+
+#: Lib/AppSidebar.php:140
+msgid "Vacancies"
+msgstr ""
+
+#: Lib/AppSidebar.php:150
+msgid "Booked Rooms"
+msgstr ""
+
+#: Lib/AppSidebar.php:162
+#: Users/edit.php:107
+#: Users/properties.php:97
+msgid "eTurizem"
+msgstr ""
+
+#: Lib/AppSidebar.php:170
+msgid "Send Guest Book"
+msgstr ""
+
+#: Lib/AppSidebar.php:180
+msgid "Send Monthly Report"
+msgstr ""
+
+#: Lib/AppSidebar.php:192
+msgid "Lookups"
+msgstr ""
+
+#: Lib/AppSidebar.php:211
+msgid "Counters"
+msgstr ""
+
+#: Lib/AppSidebar.php:221
+msgid "Rooms"
+msgstr ""
+
+#: Lib/AppSidebar.php:231
+msgid "Room Types"
+msgstr ""
+
+#: Lib/AppSidebar.php:241
+msgid "Service Types"
+msgstr ""
+
+#: Lib/AppSidebar.php:251
+msgid "Invoices Counters"
+msgstr ""
+
+#: Lib/AppSidebar.php:261
+msgid "Invoices Items"
+msgstr ""
+
+#: Lib/AppSidebar.php:271
+msgid "Invoices Vats"
+msgstr ""
+
+#: Lib/AppSidebar.php:281
+msgid "Invoices Templates"
+msgstr ""
+
+#: Lib/AppSidebar.php:291
+msgid "Business Premises"
+msgstr ""
+
+#: Lib/ETurizem.php:95
+msgid "Line {0}: {1}"
+msgstr ""
+
+#: Lib/ETurizem.php:114
+msgid "Cannot parse response XML"
+msgstr ""
+
+#: Lib/ETurizem.php:142
+msgid "XSD Validation Failed"
+msgstr ""
+
+#: Lib/ETurizem.php:143
+msgid "Soap request Failed"
+msgstr ""
+
+#: Lib/ETurizem.php:144
+msgid "Data has been successfully sent!"
+msgstr ""
+
+#: Lib/ETurizem.php:223
+msgid "Warning {0}: "
+msgstr ""
+
+#: Lib/ETurizem.php:226
+msgid "Error {0}: "
+msgstr ""
+
+#: Lib/ETurizem.php:229
+msgid "Fatal Error {0}: "
+msgstr ""
+
+#: Model/Table/UsersTable.php:241
+#: Users/reset.php:5
+msgid "Password Reset"
+msgstr ""
+
+#: Companies/edit.php:7
+msgid "Add Company"
+msgstr ""
+
+#: Companies/edit.php:7
+msgid "Edit Company"
+msgstr ""
+
+#: Companies/edit.php:10
+#: Companies/view.php:18
+#: Counters/edit.php:10
+#: Registrations/edit.php:10
+#: Registrations/view.php:18
+#: Reservations/edit.php:16
+#: Reservations/view.php:18
+#: RoomTypes/edit.php:10
+#: Rooms/edit.php:10
+#: ServiceTypes/edit.php:10
+#: Users/view.php:15
+msgid "Delete"
+msgstr ""
+
+#: Companies/edit.php:16
+#: Counters/edit.php:16
+#: RoomTypes/edit.php:16
+#: Rooms/edit.php:16
+#: ServiceTypes/edit.php:16
+msgid "Are You Sure?"
+msgstr ""
+
+#: Companies/edit.php:40
+#: Counters/edit.php:48
+#: Reservations/create_invoice.php:99
+#: RoomTypes/edit.php:44
+#: Rooms/edit.php:44
+#: ServiceTypes/edit.php:44
+#: Users/edit.php:27
+#: Users/properties.php:27
+msgid "Basics"
+msgstr ""
+
+#: Companies/edit.php:45
+#: Companies/index.php:25
+#: Counters/edit.php:60
+#: Counters/index.php:23
+#: RoomTypes/edit.php:49
+#: RoomTypes/index.php:26
+#: Rooms/edit.php:56
+#: Rooms/index.php:24
+#: ServiceTypes/edit.php:49
+#: ServiceTypes/index.php:23
+msgid "Title"
+msgstr ""
+
+#: Companies/edit.php:52
+#: Companies/index.php:26
+#: Registrations/view.php:37
+#: Reservations/create_invoice.php:140
+msgid "Street"
+msgstr ""
+
+#: Companies/edit.php:59
+#: Companies/index.php:27
+msgid "Zip"
+msgstr ""
+
+#: Companies/edit.php:66
+#: Companies/index.php:28
+#: Reservations/create_invoice.php:163
+msgid "City"
+msgstr ""
+
+#: Companies/edit.php:73
+#: Reservations/create_invoice.php:188
+msgid "Tax no."
+msgstr ""
+
+#: Companies/edit.php:80
+msgid "Tax status"
+msgstr ""
+
+#: Companies/edit.php:82
+msgid "Registered for TAX reporting"
+msgstr ""
+
+#: Companies/edit.php:83
+msgid "Not registered for TAX reporting"
+msgstr ""
+
+#: Companies/edit.php:92
+#: Counters/edit.php:99
+#: Registrations/edit.php:251
+#: Reservations/create_invoice.php:237
+#: Reservations/edit.php:179
+#: RoomTypes/edit.php:57
+#: Rooms/edit.php:106
+#: ServiceTypes/edit.php:57
+#: Users/edit.php:138
+#: Users/properties.php:127
+msgid "Save"
+msgstr ""
+
+#: Companies/index.php:6
+#: Counters/index.php:6
+#: Registrations/index.php:80
+#: Reservations/index.php:95
+#: RoomTypes/index.php:7
+#: Rooms/index.php:7
+#: ServiceTypes/index.php:6
+#: Users/index.php:25
+msgid "Add"
+msgstr ""
+
+#: Companies/view.php:7
+msgid "Company"
+msgstr ""
+
+#: Companies/view.php:10
+#: Registrations/view.php:10
+#: Reservations/view.php:10
+#: Users/view.php:10
+msgid "Edit"
+msgstr ""
+
+#: Companies/view.php:25
+msgid "Are you sure you want to delete this company?"
+msgstr ""
+
+#: Companies/view.php:29
+msgid "Add User"
+msgstr ""
+
+#: Companies/view.php:50
+msgid "Users"
+msgstr ""
+
+#: Companies/view.php:54
+#: Reservations/view.php:51
+#: Users/edit.php:33
+#: Users/index.php:46
+#: Users/properties.php:33
+#: Users/view.php:29
+msgid "Name"
+msgstr ""
+
+#: Companies/view.php:55
+#: Users/edit.php:84
+#: Users/edit.php:122
+#: Users/login.php:19
+#: Users/properties.php:112
+#: Users/view.php:30
+msgid "Username"
+msgstr ""
+
+#: Companies/view.php:56
+#: Users/edit.php:40
+#: Users/properties.php:41
+#: Users/reset.php:24
+#: Users/view.php:31
+msgid "Email"
+msgstr ""
+
+#: Companies/view.php:57
+#: Users/edit.php:67
+msgid "Privileges"
+msgstr ""
+
+#: Companies/view.php:58
+msgid "ETurizem"
+msgstr ""
+
+#: Counters/edit.php:7
+msgid "Add Counter"
+msgstr ""
+
+#: Counters/edit.php:7
+msgid "Edit Counter"
+msgstr ""
+
+#: Counters/edit.php:53
+#: Registrations/edit.php:145
+#: Registrations/view.php:61
+#: Rooms/edit.php:49
+msgid "No."
+msgstr ""
+
+#: Counters/edit.php:67
+msgid "Reservation Template"
+msgstr ""
+
+#: Counters/edit.php:74
+msgid "Last used no."
+msgstr ""
+
+#: Counters/edit.php:86
+msgid "Invoices Counter"
+msgstr ""
+
+#: Counters/edit.php:89
+msgid "select"
+msgstr ""
+
+#: Counters/index.php:3
+msgid "Counters List"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:13
+msgid "EXPORT: Upload eTurizem XML"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:27
+#: Eturizem/send_monthly_report.php:27
+msgid "Private key password"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:33
+#: Eturizem/send_monthly_report.php:33
+msgid "Sign and Send"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:51
+#: Eturizem/send_monthly_report.php:54
+msgid "EXPORT: eTurizem Errors"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:51
+#: Eturizem/send_monthly_report.php:54
+msgid "EXPORT: eTurizem Success"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:57
+#: Eturizem/send_monthly_report.php:62
+#: Eturizem/send_monthly_report.php:141
+msgid "Status"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:61
+#: Eturizem/send_guest_book.php:70
+#: Eturizem/send_monthly_report.php:66
+#: Eturizem/send_monthly_report.php:75
+msgid "Message"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:64
+#: Eturizem/send_monthly_report.php:69
+msgid "Show/Hide Details"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:74
+#: Eturizem/send_monthly_report.php:79
+msgid "XML"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:87
+msgid "EXPORT: Registrations to eTurizem format"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:105
+#: Rooms/report_booked.php:27
+msgid "Date"
+msgstr ""
+
+#: Eturizem/send_guest_book.php:120
+#: Eturizem/send_monthly_report.php:177
+msgid "Send"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:13
+msgid "EXPORT: eTurizem Monthly Report XML"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:41
+msgid "Data Preview"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:60
+msgid "Data Results"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:93
+msgid "EXPORT: eTurizem Monthly Report"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:116
+#: Registrations/report_analytics.php:20
+#: Registrations/report_guests.php:20
+#: Registrations/report_services.php:20
+#: Reservations/report_analytics.php:20
+#: Rooms/report_booked.php:20
+#: Rooms/report_vacancies.php:20
+msgid "Counter"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:128
+#: Rooms/report_booked.php:39
+#: Rooms/report_booked.php:44
+msgid "Month"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:153
+msgid "Additional Beds"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:162
+msgid "Units Sold"
+msgstr ""
+
+#: Eturizem/send_monthly_report.php:170
+msgid "Workday Count"
+msgstr ""
+
+#: Registrations/edit.php:7
+msgid "Add Registration"
+msgstr ""
+
+#: Registrations/edit.php:7
+msgid "Edit Registration"
+msgstr ""
+
+#: Registrations/edit.php:17
+#: Registrations/view.php:25
+msgid "Are you sure you want to delete this registration?"
+msgstr ""
+
+#: Registrations/edit.php:21
+msgid "Copy"
+msgstr ""
+
+#: Registrations/edit.php:62
+#: Registrations/index.php:99
+#: Registrations/pdf/report_guests.php:6
+#: Registrations/pdf/report_services.php:6
+#: Registrations/view.php:34
+msgid "Client"
+msgstr ""
+
+#: Registrations/edit.php:72
+msgid "Please Enter Client"
+msgstr ""
+
+#: Registrations/edit.php:81
+msgid "Please pick a client from client's list."
+msgstr ""
+
+#: Registrations/edit.php:99
+#: Reservations/edit.php:91
+#: Reservations/view.php:55
+msgid "Address"
+msgstr ""
+
+#: Registrations/edit.php:113
+msgid "Date and place of birth"
+msgstr ""
+
+#: Registrations/edit.php:128
+msgid "Client Identification"
+msgstr ""
+
+#: Registrations/edit.php:134
+#: Registrations/edit.php:158
+#: Registrations/edit.php:231
+#: Registrations/index.php:98
+msgid "Kind"
+msgstr ""
+
+#: Registrations/edit.php:152
+msgid "Registration Dates"
+msgstr ""
+
+#: Registrations/edit.php:162
+#: Registrations/index.php:118
+#: Registrations/view.php:7
+msgid "Registration"
+msgstr ""
+
+#: Registrations/edit.php:163
+#: Registrations/index.php:118
+#: Registrations/view.php:7
+msgid "Cancellation"
+msgstr ""
+
+#: Registrations/edit.php:172
+#: Reservations/edit.php:115
+msgid "Start"
+msgstr ""
+
+#: Registrations/edit.php:174
+#: Registrations/edit.php:187
+#: Reservations/edit.php:117
+#: Reservations/edit.php:130
+msgid "Invalid Date Format."
+msgstr ""
+
+#: Registrations/edit.php:175
+msgid "Invalid or Overlapping Dates"
+msgstr ""
+
+#: Registrations/edit.php:176
+msgid "Overlapping with Reservations"
+msgstr ""
+
+#: Registrations/edit.php:185
+#: Reservations/edit.php:128
+msgid "End"
+msgstr ""
+
+#: Registrations/edit.php:195
+#: Registrations/edit.php:201
+#: Registrations/index.php:100
+#: Registrations/pdf/report_analytics.php:5
+#: Registrations/pdf/report_guests.php:5
+#: Registrations/pdf/report_services.php:5
+#: Registrations/view.php:77
+#: Reservations/edit.php:139
+#: Reservations/edit.php:145
+#: Reservations/pdf/report_analytics.php:5
+#: Reservations/view.php:75
+#: element/registrations_history.php:35
+msgid "Room"
+msgstr ""
+
+#: Registrations/edit.php:213
+#: Registrations/index.php:101
+#: Registrations/view.php:81
+msgid "Service"
+msgstr ""
+
+#: Registrations/edit.php:216
+msgid "None"
+msgstr ""
+
+#: Registrations/edit.php:225
+msgid "Tourist TAX"
+msgstr ""
+
+#: Registrations/edit.php:243
+#: Registrations/view.php:93
+msgid "Amount"
+msgstr ""
+
+#: Registrations/edit.php:270
+msgid "Add Person"
+msgstr ""
+
+#: Registrations/edit.php:271
+msgid "Edit Person"
+msgstr ""
+
+#: Registrations/index.php:12
+msgid "Today"
+msgstr ""
+
+#: Registrations/index.php:49
+msgid "All Rooms"
+msgstr ""
+
+#: Registrations/index.php:61
+msgid "all rooms"
+msgstr ""
+
+#: Registrations/index.php:73
+msgid "Registrations for {0} in {1} for {2}"
+msgstr ""
+
+#: Registrations/index.php:97
+msgid "Start - End"
+msgstr ""
+
+#: Registrations/index.php:111
+#: element/registrations_history.php:45
+msgid "No registrations found."
+msgstr ""
+
+#: Registrations/index.php:121
+msgid "Goto Client"
+msgstr ""
+
+#: Registrations/pdf/report_analytics.php:1
+msgid "Registrations for {1} on {0}"
+msgstr ""
+
+#: Registrations/pdf/report_analytics.php:6
+#: Registrations/view.php:69
+#: Reservations/pdf/report_analytics.php:6
+#: Reservations/view.php:67
+#: element/registrations_history.php:34
+msgid "Date Span"
+msgstr ""
+
+#: Registrations/pdf/report_guests.php:1
+msgid "Guests for {1} on {0}"
+msgstr ""
+
+#: Registrations/pdf/report_guests.php:7
+#: Registrations/pdf/report_services.php:7
+msgid "Date span"
+msgstr ""
+
+#: Registrations/pdf/report_services.php:1
+msgid "Services for {1} on {0}"
+msgstr ""
+
+#: Registrations/report_analytics.php:5
+msgid "REPORT: Registrations"
+msgstr ""
+
+#: Registrations/report_analytics.php:28
+#: Registrations/report_guests.php:28
+#: Registrations/report_services.php:28
+#: Reservations/report_analytics.php:28
+#: Rooms/report_vacancies.php:28
+msgid "Registration Date"
+msgstr ""
+
+#: Registrations/report_analytics.php:36
+#: Registrations/report_guests.php:36
+#: Registrations/report_services.php:36
+#: Reservations/report_analytics.php:36
+#: Rooms/report_booked.php:63
+#: Rooms/report_vacancies.php:36
+msgid "Print"
+msgstr ""
+
+#: Registrations/report_guests.php:5
+msgid "REPORT: Guests"
+msgstr ""
+
+#: Registrations/report_services.php:5
+msgid "REPORT: Services"
+msgstr ""
+
+#: Registrations/view.php:38
+#: Reservations/create_invoice.php:145
+msgid "ZIP and City"
+msgstr ""
+
+#: Registrations/view.php:39
+#: Reservations/create_invoice.php:176
+#: Reservations/edit.php:99
+#: Reservations/view.php:59
+msgid "Country"
+msgstr ""
+
+#: Registrations/view.php:45
+msgid "Birth Date"
+msgstr ""
+
+#: Registrations/view.php:49
+msgid "Birth Place"
+msgstr ""
+
+#: Registrations/view.php:57
+msgid "Identification"
+msgstr ""
+
+#: Registrations/view.php:89
+msgid "Tourist Tax"
+msgstr ""
+
+#: Registrations/view.php:102
+#: Registrations/view.php:110
+msgid "ETurizem Status"
+msgstr ""
+
+#: Registrations/view.php:103
+msgid "NOT Sent"
+msgstr ""
+
+#: Registrations/view.php:111
+msgid "Sent"
+msgstr ""
+
+#: Registrations/view.php:114
+msgid "GUID"
+msgstr ""
+
+#: Registrations/view.php:118
+msgid "Time"
+msgstr ""
+
+#: Reservations/create_invoice.php:9
+msgid "Add an Invoice #{0} <span class=\"light\">({1})</span>"
+msgstr ""
+
+#: Reservations/create_invoice.php:15
+msgid "Edit an Invoice #{0} <span class=\"light\">({1})</span>"
+msgstr ""
+
+#: Reservations/create_invoice.php:109
+msgid "Invoice no"
+msgstr ""
+
+#: Reservations/create_invoice.php:123
+msgid "Receiver"
+msgstr ""
+
+#: Reservations/create_invoice.php:130
+msgid "Name/Surname OR Company Title"
+msgstr ""
+
+#: Reservations/create_invoice.php:152
+msgid "ZIP"
+msgstr ""
+
+#: Reservations/create_invoice.php:196
+msgid "Dates"
+msgstr ""
+
+#: Reservations/create_invoice.php:204
+msgid "Date of issue"
+msgstr ""
+
+#: Reservations/create_invoice.php:206
+#: Reservations/create_invoice.php:271
+#: Reservations/create_invoice.php:284
+msgid "Blank"
+msgstr ""
+
+#: Reservations/create_invoice.php:218
+msgid "Description"
+msgstr ""
+
+#: Reservations/create_invoice.php:270
+msgid "Service date"
+msgstr ""
+
+#: Reservations/create_invoice.php:283
+msgid "Expiration date"
+msgstr ""
+
+#: Reservations/create_invoice.php:296
+msgid "Analytics"
+msgstr ""
+
+#: Reservations/create_invoice.php:316
+msgid "Are you sure you want to unlink item?"
+msgstr ""
+
+#: Reservations/create_invoice.php:326
+msgid "There are some errors. Please check your data and try again."
+msgstr ""
+
+#: Reservations/edit.php:7
+msgid "Add Reservation #{0}"
+msgstr ""
+
+#: Reservations/edit.php:9
+msgid "Edit Reservation #{0}"
+msgstr ""
+
+#: Reservations/edit.php:23
+#: Reservations/view.php:25
+msgid "Are you sure you want to delete this reservation?"
+msgstr ""
+
+#: Reservations/edit.php:27
+#: Reservations/view.php:29
+msgid "Create Registration"
+msgstr ""
+
+#: Reservations/edit.php:78
+msgid "Reservator"
+msgstr ""
+
+#: Reservations/edit.php:84
+msgid "Surname and Name"
+msgstr ""
+
+#: Reservations/edit.php:110
+msgid "Reservation Dates"
+msgstr ""
+
+#: Reservations/edit.php:118
+#: Reservations/edit.php:131
+msgid "Invalid or Overlapping Date"
+msgstr ""
+
+#: Reservations/edit.php:119
+msgid "Overlapping with Registrations"
+msgstr ""
+
+#: Reservations/edit.php:157
+msgid "No. Persons"
+msgstr ""
+
+#: Reservations/edit.php:167
+#: Reservations/view.php:87
+msgid "Notes"
+msgstr ""
+
+#: Reservations/index.php:89
+msgid "Reservations for {0} for {1} {2}"
+msgstr ""
+
+#: Reservations/index.php:117
+#: Rooms/index.php:31
+msgid "Beds"
+msgstr ""
+
+#: Reservations/index.php:359
+msgid "Enter New Reservation"
+msgstr ""
+
+#: Reservations/pdf/report_analytics.php:1
+msgid "Reservations for {1} on {0}"
+msgstr ""
+
+#: Reservations/preview_invoice.php:19
+msgid "Back to Reservation"
+msgstr ""
+
+#: Reservations/preview_invoice.php:27
+#: Reservations/preview_invoice.php:37
+msgid "Send via Email"
+msgstr ""
+
+#: Reservations/preview_invoice.php:34
+#: Reservations/view.php:100
+msgid "Reservation Invoice"
+msgstr ""
+
+#: Reservations/report_analytics.php:5
+msgid "REPORT: Reservations"
+msgstr ""
+
+#: Reservations/view.php:7
+msgid "Reservation"
+msgstr ""
+
+#: Reservations/view.php:38
+msgid "Create Invoice"
+msgstr ""
+
+#: Reservations/view.php:79
+msgid "Persons"
+msgstr ""
+
+#: Reservations/view.php:105
+msgid "delete"
+msgstr ""
+
+#: Reservations/view.php:105
+msgid "Are you sure?"
+msgstr ""
+
+#: RoomTypes/edit.php:7
+msgid "Add Room Type"
+msgstr ""
+
+#: RoomTypes/edit.php:7
+msgid "Edit Room Type"
+msgstr ""
+
+#: RoomTypes/index.php:4
+msgid "Room Types List"
+msgstr ""
+
+#: Rooms/edit.php:7
+msgid "Edit Room"
+msgstr ""
+
+#: Rooms/edit.php:7
+msgid "Add Room"
+msgstr ""
+
+#: Rooms/edit.php:65
+msgid "Room Type"
+msgstr ""
+
+#: Rooms/edit.php:75
+msgid "No. of Beds"
+msgstr ""
+
+#: Rooms/edit.php:81
+msgid "Invoice Data"
+msgstr ""
+
+#: Rooms/edit.php:86
+msgid "Price Per Day."
+msgstr ""
+
+#: Rooms/edit.php:94
+msgid "VAT"
+msgstr ""
+
+#: Rooms/index.php:2
+#: Rooms/index.php:4
+msgid "Room List"
+msgstr ""
+
+#: Rooms/index.php:27
+msgid "Type"
+msgstr ""
+
+#: Rooms/pdf/report_booked.php:4
+msgid "Booked Rooms for {0}"
+msgstr ""
+
+#: Rooms/pdf/report_booked.php:38
+msgid "Total Room Count"
+msgstr ""
+
+#: Rooms/pdf/report_vacancies.php:1
+msgid "Vacancies for {1} on {0}"
+msgstr ""
+
+#: Rooms/pdf/report_vacancies.php:38
+msgid "Total Free Bed Count"
+msgstr ""
+
+#: Rooms/report_booked.php:5
+#: Rooms/report_vacancies.php:5
+msgid "REPORT: Vacancies"
+msgstr ""
+
+#: Rooms/report_booked.php:53
+msgid "Year"
+msgstr ""
+
+#: ServiceTypes/edit.php:7
+msgid "Add Service Type"
+msgstr ""
+
+#: ServiceTypes/edit.php:7
+msgid "Edit Service Type"
+msgstr ""
+
+#: ServiceTypes/index.php:3
+msgid "Service Types List"
+msgstr ""
+
+#: Users/change_password.php:4
+msgid "Set new password for {0}"
+msgstr ""
+
+#: Users/change_password.php:10
+msgid "New Password"
+msgstr ""
+
+#: Users/change_password.php:10
+msgid "Password is required, format must be valid."
+msgstr ""
+
+#: Users/change_password.php:11
+#: Users/edit.php:100
+#: Users/properties.php:85
+msgid "Repeat Password"
+msgstr ""
+
+#: Users/change_password.php:11
+#: Users/properties.php:69
+#: Users/properties.php:89
+msgid "Passwords do not match."
+msgstr ""
+
+#: Users/change_password.php:14
+msgid "Change"
+msgstr ""
+
+#: Users/edit.php:7
+msgid "Edit User"
+msgstr ""
+
+#: Users/edit.php:47
+msgid "Active User"
+msgstr ""
+
+#: Users/edit.php:54
+msgid "Hidden User"
+msgstr ""
+
+#: Users/edit.php:60
+#: Users/login.php:5
+msgid "Login"
+msgstr ""
+
+#: Users/edit.php:72
+msgid "Root"
+msgstr ""
+
+#: Users/edit.php:73
+msgid "Admin"
+msgstr ""
+
+#: Users/edit.php:74
+msgid "Editor"
+msgstr ""
+
+#: Users/edit.php:75
+msgid "Reader"
+msgstr ""
+
+#: Users/edit.php:92
+#: Users/edit.php:129
+#: Users/login.php:29
+#: Users/properties.php:77
+#: Users/properties.php:119
+msgid "Password"
+msgstr ""
+
+#: Users/edit.php:113
+#: Users/properties.php:103
+msgid "Certificate"
+msgstr ""
+
+#: Users/index.php:3
+#: Users/index.php:13
+msgid "All"
+msgstr ""
+
+#: Users/index.php:5
+#: Users/index.php:15
+msgid "Inactive"
+msgstr ""
+
+#: Users/index.php:8
+#: Users/index.php:14
+msgid "Active"
+msgstr ""
+
+#: Users/index.php:19
+msgid "{0} Users"
+msgstr ""
+
+#: Users/login.php:40
+msgid "Remember me on this computer"
+msgstr ""
+
+#: Users/login.php:46
+msgid "OK"
+msgstr ""
+
+#: Users/login.php:53
+msgid "Forgot your password?"
+msgstr ""
+
+#: Users/properties.php:7
+msgid "My Properties"
+msgstr ""
+
+#: Users/properties.php:51
+msgid "Avatar"
+msgstr ""
+
+#: Users/properties.php:60
+msgid "Change Password"
+msgstr ""
+
+#: Users/properties.php:65
+msgid "Current Password"
+msgstr ""
+
+#: Users/properties.php:68
+#: Users/properties.php:88
+msgid "Must not be empty."
+msgstr ""
+
+#: Users/reset.php:25
+msgid "Email is required, format must be valid."
+msgstr ""
+
+#: Users/reset.php:33
+msgid "Request new Password"
+msgstr ""
+
+#: Users/view.php:4
+msgid "User data for {0}"
+msgstr ""
+
+#: Users/view.php:19
+msgid "Are you sure you want to delete this user?"
+msgstr ""
+
+#: element/registrations_history.php:25
+msgid "Registrations History for {0}"
+msgstr ""
+
+#: layout/default.php:72
+msgid "Settings"
+msgstr ""
+
+#: layout/default.php:74
+msgid "Logout"
+msgstr ""
+
+#: layout/error.php:40
+msgid "Back"
+msgstr ""
+

@@ -20,6 +20,8 @@ if (!defined('STDIN')) {
     define('STDIN', fopen('php://stdin', 'r'));
 }
 
+use Cake\Auth\DefaultPasswordHasher;
+use Cake\Datasource\ConnectionManager;
 use Cake\Utility\Security;
 use Composer\Script\Event;
 use Exception;
@@ -58,10 +60,49 @@ class Installer
         $rootDir = dirname(dirname(__DIR__));
 
         static::createAppLocalConfig($rootDir, $io);
+        static::setSecuritySalt($rootDir, $io);
         static::createWritableDirectories($rootDir, $io);
 
-        static::setFolderPermissions($rootDir, $io);
-        static::setSecuritySalt($rootDir, $io);
+        // ask if the permissions should be changed
+        if ($io->isInteractive()) {
+            $validator = function ($arg) {
+                if (in_array($arg, ['Y', 'y', 'N', 'n'])) {
+                    return $arg;
+                }
+                throw new Exception('This is not a valid answer. Please choose Y or n.');
+            };
+            $setFolderPermissions = $io->askAndValidate(
+                '<info>Set Folder Permissions ? (Default to Y)</info> [<comment>Y,n</comment>]? ',
+                $validator,
+                10,
+                'Y'
+            );
+
+            if (in_array($setFolderPermissions, ['Y', 'y'])) {
+                static::setFolderPermissions($rootDir, $io);
+            }
+
+            $dbConnectSuccess = false;
+            while (!$dbConnectSuccess) {
+                $dbHost = $io->ask('<info>Enter database host ?</info> [<comment>localhost</comment>]? ', 'localhost');
+                $dbName = $io->ask('<info>Enter database name ?</info> [<comment>ehoteldesk2</comment>]? ', 'ehoteldesk2');
+                $dbUser = $io->ask('<info>Enter database user ?</info> ');
+                $dbPassword = $io->ask('<info>Enter database password ?</info> ');
+
+                $dbConnectSuccess = static::checkDbConnection($dbHost, $dbName, $dbUser, $dbPassword, $io);
+
+                if ($dbConnectSuccess) {
+                    static::setDbConfigInFile($dbHost, $dbName, $dbUser, $dbPassword, $rootDir, 'app_local.php', $io);
+                    if (static::importDbSchema($rootDir, 'ehoteldesk.sql')) {
+                        $io->write('Successfuly imported sql schema.');
+                    }
+                } else {
+                    $io->writeError('Cannot connect to mysql database. Please try again.');
+                }
+            }
+        } else {
+            static::setFolderPermissions($rootDir, $io);
+        }
 
         $class = 'Cake\Codeception\Console\Installer';
         if (class_exists($class)) {
@@ -115,26 +156,6 @@ class Installer
      */
     public static function setFolderPermissions($dir, $io)
     {
-        // ask if the permissions should be changed
-        if ($io->isInteractive()) {
-            $validator = function ($arg) {
-                if (in_array($arg, ['Y', 'y', 'N', 'n'])) {
-                    return $arg;
-                }
-                throw new Exception('This is not a valid answer. Please choose Y or n.');
-            };
-            $setFolderPermissions = $io->askAndValidate(
-                '<info>Set Folder Permissions ? (Default to Y)</info> [<comment>Y,n</comment>]? ',
-                $validator,
-                10,
-                'Y'
-            );
-
-            if (in_array($setFolderPermissions, ['n', 'N'])) {
-                return;
-            }
-        }
-
         // Change the permissions on a path and output the results.
         $changePerms = function ($path) use ($io) {
             $currentPerms = fileperms($path) & 0777;
@@ -242,5 +263,102 @@ class Installer
             return;
         }
         $io->write('Unable to update __APP_NAME__ value.');
+    }
+
+    /**
+     * Try to connect to database
+     *
+     * @param string $dbHost Database host.
+     * @param string $db Database name.
+     * @param string $dbUser Mysql username.
+     * @param string $dbPassword Mysql password.
+     * @param \Composer\IO\IOInterface $io IO interface to write to console.
+     * @return bool
+     */
+    public static function checkDbConnection($dbHost, $db, $dbUser, $dbPassword, $io)
+    {
+        try {
+            ConnectionManager::setConfig('install', [
+                'className' => 'Cake\Database\Connection',
+                'driver' => 'Cake\Database\Driver\Mysql',
+                'persistent' => false,
+                'host' => $dbHost,
+                'username' => $dbUser,
+                'password' => $dbPassword,
+                'database' => $db,
+                'timezone' => 'UTC',
+                'flags' => [],
+                'cacheMetadata' => true,
+                'log' => false,
+                'quoteIdentifiers' => true,
+                'url' => null,
+            ]);
+            /** @var \Cake\Database\Connection $connection */
+            $connection = ConnectionManager::get('install');
+            $result = $connection->connect();
+
+            return $result;
+        } catch (Exception $connectionError) {
+            $errorMsg = $connectionError->getMessage();
+            $io->writeError($errorMsg);
+        }
+
+        return false;
+    }
+
+    /**
+     * Set the dbconfig in a given file
+     *
+     * @param string $dbHost Database host.
+     * @param string $dbName Database name.
+     * @param string $dbUser Mysql username.
+     * @param string $dbPassword Mysql password.
+     * @param string $dir The application's root directory.
+     * @param string $file A path to a file relative to the application's root
+     * @param \Composer\IO\IOInterface $io IO interface to write to console.
+     * @return void
+     */
+    public static function setDbConfigInFile($dbHost, $dbName, $dbUser, $dbPassword, $dir, $file, $io)
+    {
+        $config = $dir . '/config/' . $file;
+        $content = file_get_contents($config);
+
+        $content = str_replace('__DBHOST__', $dbHost, $content, $count);
+        $content = str_replace('__DATABASE__', $dbName, $content, $count);
+        $content = str_replace('__DBUSER__', $dbUser, $content, $count);
+        $content = str_replace('__DBPASS__', $dbPassword, $content, $count);
+
+        $result = file_put_contents($config, $content);
+        if ($result) {
+            $io->write('Updated Datasources.default values in config/' . $file);
+
+            return;
+        }
+        $io->write('Unable to update Datasources.default values.');
+    }
+
+    /**
+     * Import sql schema from config/schema/famiree.sql
+     *
+     * @param string $dir The application's root directory.
+     * @param string $file A path to a file relative to the application's root
+     * @return bool
+     */
+    public static function importDbSchema($dir, $file)
+    {
+        $config = $dir . '/config/schema/' . $file;
+        $content = file_get_contents($config);
+
+        $result = false;
+
+        if ($content) {
+            $pw = (new DefaultPasswordHasher())->hash('test');
+
+            $connection = ConnectionManager::get('install');
+            $result = (bool)$connection->execute($content);
+            $connection->execute('UPDATE users SET passwd=? WHERE id=?', [$pw, '55c2c170-4b24-4997-9850-2198f5f5032f']);
+        }
+
+        return $result;
     }
 }

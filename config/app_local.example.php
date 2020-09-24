@@ -6,6 +6,9 @@
  * into source code version control.
  */
 return [
+    'App' => [
+        'defaultLocale' => 'sl_SI',
+    ],
     /*
      * Debug Level:
      *
@@ -15,7 +18,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
+    'debug' => false,
 
     /*
      * Security and encryption configuration
@@ -25,8 +28,8 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '__SALT__'),
-        'cookieKey' => env('COOKIE_KEY', '__COOKIEKEY__'),
+        'salt' => '__SALT__',
+        'cookieKey' => 'jkl59d7908DlkElu43bediFLK89kiR2G342aC9m2',
     ],
 
     /*
@@ -37,7 +40,7 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'host' => 'localhost',
+            'host' => '__DBHOST__',
             /*
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
@@ -45,20 +48,14 @@ return [
              */
             //'port' => 'non_standard_port_number',
 
-            'username' => 'my_app',
-            'password' => 'secret',
-
-            'database' => 'my_app',
+            'username' => '__DBUSER__',
+            'password' => '__DBPASS__',
+            'database' => '__DATABASE__',
             /**
              * If not using the default 'public' schema with the PostgreSQL driver
              * set it here.
              */
             //'schema' => 'myapp',
-
-            /**
-             * You can use a DSN string to set the entire configuration
-             */
-            'url' => env('DATABASE_URL', null),
         ],
 
         /*
@@ -66,12 +63,10 @@ return [
          */
         'test' => [
             'host' => 'localhost',
-            //'port' => 'non_standard_port_number',
             'username' => 'my_app',
             'password' => 'secret',
             'database' => 'test_myapp',
             //'schema' => 'myapp',
-            'url' => env('DATABASE_TEST_URL', null),
         ],
     ],
 
@@ -89,7 +84,7 @@ return [
             'username' => null,
             'password' => null,
             'client' => null,
-            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+            'url' => null,
         ],
     ],
 ];

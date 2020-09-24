@@ -292,6 +292,19 @@ class UsersController extends AppController
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->getRequest()->getData(), ['validate' => 'properties']);
 
+            $p12File = $this->getRequest()->getData('etur_p12_file');
+            if (is_array($p12File)) {
+                if (isset($p12File['error'])) {
+                    if ($p12File['error'] == UPLOAD_ERR_OK) {
+                        $user->etur_p12 = base64_encode(file_get_contents($p12File['tmp_name']));
+                    }
+                    if ($p12File['error'] == UPLOAD_ERR_NO_FILE) {
+                        unset($user->etur_p12);
+                        $user->setDirty('etur_p12', false);
+                    }
+                }
+            }
+
             $avatarFile = $this->getRequest()->getData('avatar_file');
             if (is_array($avatarFile)) {
                 if (isset($avatarFile['error'])) {

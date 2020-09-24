@@ -36,7 +36,7 @@ class EturizemController extends AppController
         if (!$this->getCurrentUser()->get('etur_p12')) {
             $this->Flash->error(__('No eTurizem certificate found. Please upload your certificate.'));
 
-            return $this->redirect(['plugin' => 'Lil', 'controller' => 'Users', 'action' => 'properties']);
+            return $this->redirect(['controller' => 'Users', 'action' => 'properties']);
         }
 
 
@@ -128,7 +128,7 @@ class EturizemController extends AppController
         if (!$this->getCurrentUser()->get('etur_p12')) {
             $this->Flash->error(__('No eTurizem certificate found. Please upload your certificate.'));
 
-            return $this->redirect(['plugin' => 'Lil', 'controller' => 'Users', 'action' => 'properties']);
+            return $this->redirect(['controller' => 'Users', 'action' => 'properties']);
         }
 
         $CountersTable = TableRegistry::get('Counters');

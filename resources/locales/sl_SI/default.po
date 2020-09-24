@@ -1,0 +1,1335 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eHotelDesk\n"
+"POT-Creation-Date: 2020-09-24 12:22+0000\n"
+"PO-Revision-Date: 2020-09-24 14:30+0200\n"
+"Last-Translator: \n"
+"Language-Team: info@malamalca.com\n"
+"Language: sl_SI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: Controller/CompaniesController.php:117
+msgid "The company has been saved."
+msgstr "Podjetje je shranjeno."
+
+#: Controller/CompaniesController.php:125
+msgid "The company could not be saved. Please, try again."
+msgstr "Podjetja ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/CompaniesController.php:145
+msgid "The company has been deleted."
+msgstr "Podjetje je bilo izbrisano."
+
+#: Controller/CompaniesController.php:147
+msgid "The company could not be deleted. Please, try again."
+msgstr "Podjetja ni mogoče izbrisati."
+
+#: Controller/CountersController.php:84
+msgid "The counter has been saved."
+msgstr "Nastanitveni obrat je bil shranjen."
+
+#: Controller/CountersController.php:88
+msgid "The counter could not be saved. Please, try again."
+msgstr "Nastanitvenega obrata ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/CountersController.php:116
+msgid "The counter has been deleted."
+msgstr "Nastanitveni obrati je bila izbrisan."
+
+#: Controller/CountersController.php:118
+msgid "The counter could not be deleted. Please, try again."
+msgstr "Nastanitvenega obrata ni mogoče izbrisati."
+
+#: Controller/EturizemController.php:37 Controller/EturizemController.php:129
+msgid "No eTurizem certificate found. Please upload your certificate."
+msgstr "Ni certifikata za eTurizem. Prosim prenesite ustrezen certifikat."
+
+#: Controller/EturizemController.php:55
+msgid "There are no registrations starting with specified date."
+msgstr "Ne najdem nobenih registracij, ki se začnejo s podanim datumom."
+
+#: Controller/EturizemController.php:77 Controller/EturizemController.php:161
+msgid "There are errors in XML. Please check your data"
+msgstr "V XML podatkih so napake. Preverite vnose."
+
+#: Controller/EturizemController.php:93 Controller/EturizemController.php:176
+msgid "ETurizem data has been successfully sent."
+msgstr "Podatki so bili uspešno poslani v sistem eTurizem."
+
+#: Controller/EturizemController.php:98 Controller/EturizemController.php:181
+msgid "An error occured while sending your data."
+msgstr "Pri pošiljanju podatkov je prišlo do napake."
+
+#: Controller/EturizemController.php:140
+msgid "Counter not found"
+msgstr "Števec dokumentov ne obstaja"
+
+#: Controller/RegistrationsController.php:81
+#: Controller/RegistrationsController.php:166
+msgid "Cannot edit registration that was already sent to ETurizem."
+msgstr "Registracija je bila že poslana v eTurizem in je ni mogoče popraviti."
+
+#: Controller/RegistrationsController.php:129
+msgid "The registration has been saved."
+msgstr "Prijava je shranjena."
+
+#: Controller/RegistrationsController.php:134
+msgid "The registration could not be saved. Please, try again."
+msgstr "Prijave ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/RegistrationsController.php:140
+msgid "No rooms defined. Please add a first counter."
+msgstr "Ni vpisanih sob ali prenočitvenih enot. Najprej dodajte enoto."
+
+#: Controller/RegistrationsController.php:172
+msgid "The registration has been deleted."
+msgstr "Prijava je izbrisana."
+
+#: Controller/RegistrationsController.php:174
+msgid "The registration could not be deleted. Please, try again."
+msgstr "Prijave ni bilo mogoče izbrisati."
+
+#: Controller/ReservationsController.php:153
+msgid "The reservation has been saved."
+msgstr "Rezervacija je shranjena."
+
+#: Controller/ReservationsController.php:160
+msgid "The reservation could not be saved. Please, try again."
+msgstr "Rezervacije ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/ReservationsController.php:184
+msgid "The reservation has been deleted."
+msgstr "Rezervacija je izbrisana."
+
+#: Controller/ReservationsController.php:186
+msgid "The reservation could not be deleted. Please, try again."
+msgstr "Rezervacije ni mogoče izbrisati."
+
+#: Controller/ReservationsController.php:211
+#: Controller/ReservationsController.php:218
+msgid "The invoices counter does not exist."
+msgstr "Števec dokumentov ne obstaja."
+
+#: Controller/ReservationsController.php:224
+msgid "Reservations Invoice"
+msgstr "Predračun za rezervacijo"
+
+#: Controller/ReservationsController.php:246
+msgid "days"
+msgstr "dni"
+
+#: Controller/RoomTypesController.php:81
+msgid "The room type has been saved."
+msgstr "Soba je shranjena."
+
+#: Controller/RoomTypesController.php:85
+msgid "The room type could not be saved. Please, try again."
+msgstr "Klasifikacijo sobe ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/RoomTypesController.php:106
+msgid "The room type has been deleted."
+msgstr "Klasifikacija sobe je izbrisana."
+
+#: Controller/RoomTypesController.php:110
+msgid "The room type is linked to a room and cannot be deleted."
+msgstr ""
+"Klasifikacija sobe je uporabljena za eno ali več sob in je ni mogoče "
+"izbrisati."
+
+#: Controller/RoomTypesController.php:113
+msgid "The room type could not be deleted. Please, try again."
+msgstr "Klasifikacije sobe ni mogoče izbrisati."
+
+#: Controller/RoomsController.php:89
+msgid "The room has been saved."
+msgstr "Soba je shranjena."
+
+#: Controller/RoomsController.php:93
+msgid "The room could not be saved. Please, try again."
+msgstr "Sobe ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/RoomsController.php:127
+msgid "The room has been deleted."
+msgstr "Soba je bila izbrisana."
+
+#: Controller/RoomsController.php:131
+msgid "The room is linked to a reservation and cannot be deleted."
+msgstr ""
+"Soba je uporabljena pri rezervacijah in/ali prijavah in je ni mogoče "
+"izbrisati."
+
+#: Controller/RoomsController.php:134
+msgid "The room could not be deleted. Please, try again."
+msgstr "Sobo ni mogoče izbrisati."
+
+#: Controller/ServiceTypesController.php:82
+msgid "The service type has been saved."
+msgstr "Usluga je  shranjena."
+
+#: Controller/ServiceTypesController.php:86
+msgid "The service type could not be saved. Please, try again."
+msgstr "Usloge ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/ServiceTypesController.php:108
+msgid "The service type has been deleted."
+msgstr "Usluga je bila izbrisana."
+
+#: Controller/ServiceTypesController.php:110
+msgid "The service type could not be deleted. Please, try again."
+msgstr "Usluge ni mogoče izbrisati. Prosim, poizkusite znova."
+
+#: Controller/UsersController.php:116
+msgid "An email with password reset instructions has been sent."
+msgstr "Email z navodili za spremembo gesla je bil poslan."
+
+#: Controller/UsersController.php:118
+msgid "No user with specified email has been found."
+msgstr "Uporabnik z vpisanim naslovom ne obstaja."
+
+#: Controller/UsersController.php:136
+msgid "Reset key does not exist."
+msgstr "Ključ za spremembo naslova ne obstaja."
+
+#: Controller/UsersController.php:146
+msgid "User does not exist."
+msgstr "Uporabnik ne obstaja."
+
+#: Controller/UsersController.php:153
+msgid "Password has been changed."
+msgstr "Geslo je bilo spremenjeno."
+
+#: Controller/UsersController.php:156
+msgid "Please verify that the information is correct."
+msgstr "Prosim preverite vpisane podatke."
+
+#: Controller/UsersController.php:268
+msgid "The user has been saved."
+msgstr "Uporabnik je bil shranjen."
+
+#: Controller/UsersController.php:272
+msgid "The user could not be saved. Please, try again."
+msgstr "Uporabnika ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/UsersController.php:326
+msgid "Properties have been saved."
+msgstr "Nastavitve so shranjene."
+
+#: Controller/UsersController.php:330
+msgid "Properties could not be saved. Please, try again."
+msgstr "Nastavitev ni mogoče shraniti. Preverite vpisane podatke."
+
+#: Controller/UsersController.php:352
+msgid "The user has been deleted."
+msgstr "Uporabnik je bila izbrisan."
+
+#: Controller/UsersController.php:354
+msgid "The user could not be deleted. Please, try again."
+msgstr "Uporabnika ni mogoče izbrisati."
+
+#: Lib/AppSidebar.php:37 Lib/AppSidebar.php:100
+#: Reservations/preview_invoice.php:16
+msgid "Reservations"
+msgstr "Rezervacije"
+
+#: Lib/AppSidebar.php:47 Lib/AppSidebar.php:110
+msgid "Registrations"
+msgstr "Prijave"
+
+#: Lib/AppSidebar.php:57
+msgid "Contacts"
+msgstr "Klienti"
+
+#: Lib/AppSidebar.php:67 Counters/edit.php:80
+msgid "Invoices"
+msgstr "Dokumenti"
+
+#: Lib/AppSidebar.php:79 Companies/index.php:3
+msgid "Companies"
+msgstr "Podjetja"
+
+#: Lib/AppSidebar.php:89
+msgid "Reports"
+msgstr "Izpisi"
+
+#: Lib/AppSidebar.php:120
+msgid "Services"
+msgstr "Usluge"
+
+#: Lib/AppSidebar.php:130
+msgid "Guests"
+msgstr "Gostje"
+
+#: Lib/AppSidebar.php:140
+msgid "Vacancies"
+msgstr "Proste kapacitete"
+
+#: Lib/AppSidebar.php:150
+msgid "Booked Rooms"
+msgstr "Oddane sobe"
+
+#: Lib/AppSidebar.php:162 Users/edit.php:107 Users/properties.php:97
+msgid "eTurizem"
+msgstr "eTurizem"
+
+#: Lib/AppSidebar.php:170
+msgid "Send Guest Book"
+msgstr "Pošiljanje seznama gostov"
+
+#: Lib/AppSidebar.php:180
+msgid "Send Monthly Report"
+msgstr "Pošiljanje mesečnega poročila"
+
+#: Lib/AppSidebar.php:192
+msgid "Lookups"
+msgstr "Šifranti"
+
+#: Lib/AppSidebar.php:211
+msgid "Counters"
+msgstr "Nastanitveni obrati"
+
+#: Lib/AppSidebar.php:221
+msgid "Rooms"
+msgstr "Sobe"
+
+#: Lib/AppSidebar.php:231
+msgid "Room Types"
+msgstr "Klasifikacija sob"
+
+#: Lib/AppSidebar.php:241
+msgid "Service Types"
+msgstr "Usluge"
+
+#: Lib/AppSidebar.php:251
+msgid "Invoices Counters"
+msgstr "Števci dokumentov"
+
+#: Lib/AppSidebar.php:261
+msgid "Invoices Items"
+msgstr "Artikli"
+
+#: Lib/AppSidebar.php:271
+msgid "Invoices Vats"
+msgstr "DDV"
+
+#: Lib/AppSidebar.php:281
+msgid "Invoices Templates"
+msgstr "Predloge"
+
+#: Lib/AppSidebar.php:291
+msgid "Business Premises"
+msgstr "Poslovni prostori"
+
+#: Lib/ETurizem.php:95
+msgid "Line {0}: {1}"
+msgstr "Vrstica {0}: {1}"
+
+#: Lib/ETurizem.php:114
+msgid "Cannot parse response XML"
+msgstr "Odgovora strežnika ni mogoče prebrati"
+
+#: Lib/ETurizem.php:142
+msgid "XSD Validation Failed"
+msgstr "Napaka pri preverjanju strukture XSD"
+
+#: Lib/ETurizem.php:143
+msgid "Soap request Failed"
+msgstr "SOAP pošiljanje je spodletelo"
+
+#: Lib/ETurizem.php:144
+msgid "Data has been successfully sent!"
+msgstr "Podatki so bili uspešno poslani"
+
+#: Lib/ETurizem.php:223
+msgid "Warning {0}: "
+msgstr "Opozorilo {0}: "
+
+#: Lib/ETurizem.php:226
+msgid "Error {0}: "
+msgstr "Napaka {0}: "
+
+#: Lib/ETurizem.php:229
+msgid "Fatal Error {0}: "
+msgstr "Napaka {0}: "
+
+#: Model/Table/UsersTable.php:241 Users/reset.php:5
+msgid "Password Reset"
+msgstr "Sprememba gesla"
+
+#: Companies/edit.php:7
+msgid "Add Company"
+msgstr "Vpis podjetja"
+
+#: Companies/edit.php:7
+msgid "Edit Company"
+msgstr "Uredi podjetje"
+
+#: Companies/edit.php:10 Companies/view.php:18 Counters/edit.php:10
+#: Registrations/edit.php:10 Registrations/view.php:18 Reservations/edit.php:16
+#: Reservations/view.php:18 RoomTypes/edit.php:10 Rooms/edit.php:10
+#: ServiceTypes/edit.php:10 Users/view.php:15
+msgid "Delete"
+msgstr "Briši"
+
+#: Companies/edit.php:16 Counters/edit.php:16 RoomTypes/edit.php:16
+#: Rooms/edit.php:16 ServiceTypes/edit.php:16
+msgid "Are You Sure?"
+msgstr "Ste prepričani?"
+
+#: Companies/edit.php:40 Counters/edit.php:48
+#: Reservations/create_invoice.php:99 RoomTypes/edit.php:44 Rooms/edit.php:44
+#: ServiceTypes/edit.php:44 Users/edit.php:27 Users/properties.php:27
+msgid "Basics"
+msgstr "Osnovni podatki"
+
+#: Companies/edit.php:45 Companies/index.php:25 Counters/edit.php:60
+#: Counters/index.php:23 RoomTypes/edit.php:49 RoomTypes/index.php:26
+#: Rooms/edit.php:56 Rooms/index.php:24 ServiceTypes/edit.php:49
+#: ServiceTypes/index.php:23
+msgid "Title"
+msgstr "Naziv"
+
+#: Companies/edit.php:52 Companies/index.php:26 Registrations/view.php:37
+#: Reservations/create_invoice.php:140
+msgid "Street"
+msgstr "Ulica"
+
+#: Companies/edit.php:59 Companies/index.php:27
+msgid "Zip"
+msgstr "Poštna št."
+
+#: Companies/edit.php:66 Companies/index.php:28
+#: Reservations/create_invoice.php:163
+msgid "City"
+msgstr "Kraj"
+
+#: Companies/edit.php:73 Reservations/create_invoice.php:188
+msgid "Tax no."
+msgstr "Davčna št."
+
+#: Companies/edit.php:80
+msgid "Tax status"
+msgstr "DDV zavezanec"
+
+#: Companies/edit.php:82
+msgid "Registered for TAX reporting"
+msgstr "Zavezanec za DDV"
+
+#: Companies/edit.php:83
+msgid "Not registered for TAX reporting"
+msgstr "Nezavezanec za DDV"
+
+#: Companies/edit.php:92 Counters/edit.php:99 Registrations/edit.php:251
+#: Reservations/create_invoice.php:237 Reservations/edit.php:179
+#: RoomTypes/edit.php:57 Rooms/edit.php:106 ServiceTypes/edit.php:57
+#: Users/edit.php:138 Users/properties.php:127
+msgid "Save"
+msgstr "Shrani"
+
+#: Companies/index.php:6 Counters/index.php:6 Registrations/index.php:80
+#: Reservations/index.php:95 RoomTypes/index.php:7 Rooms/index.php:7
+#: ServiceTypes/index.php:6 Users/index.php:25
+msgid "Add"
+msgstr "Vpis"
+
+#: Companies/view.php:7
+msgid "Company"
+msgstr "Podjetje"
+
+#: Companies/view.php:10 Registrations/view.php:10 Reservations/view.php:10
+#: Users/view.php:10
+msgid "Edit"
+msgstr "Uredi"
+
+#: Companies/view.php:25
+msgid "Are you sure you want to delete this company?"
+msgstr "Ste prepričani, da želite izbrisati podjetje?"
+
+#: Companies/view.php:29
+msgid "Add User"
+msgstr "Vpis uporabnika"
+
+#: Companies/view.php:50
+msgid "Users"
+msgstr "Uporabniki"
+
+#: Companies/view.php:54 Reservations/view.php:51 Users/edit.php:33
+#: Users/index.php:46 Users/properties.php:33 Users/view.php:29
+msgid "Name"
+msgstr "Ime"
+
+#: Companies/view.php:55 Users/edit.php:84 Users/edit.php:122
+#: Users/login.php:19 Users/properties.php:112 Users/view.php:30
+msgid "Username"
+msgstr "Uporabniško ime"
+
+#: Companies/view.php:56 Users/edit.php:40 Users/properties.php:41
+#: Users/reset.php:24 Users/view.php:31
+msgid "Email"
+msgstr "Email"
+
+#: Companies/view.php:57 Users/edit.php:67
+msgid "Privileges"
+msgstr "Dostop"
+
+#: Companies/view.php:58
+msgid "ETurizem"
+msgstr "ETurizem"
+
+#: Counters/edit.php:7
+msgid "Add Counter"
+msgstr "Vpis obrata"
+
+#: Counters/edit.php:7
+msgid "Edit Counter"
+msgstr "Uredi obrat"
+
+#: Counters/edit.php:53 Registrations/edit.php:145 Registrations/view.php:61
+#: Rooms/edit.php:49
+msgid "No."
+msgstr "Št."
+
+#: Counters/edit.php:67
+msgid "Reservation Template"
+msgstr "Predloga za št. rezervacije"
+
+#: Counters/edit.php:74
+msgid "Last used no."
+msgstr "Zadnja uporabljena št."
+
+#: Counters/edit.php:86
+msgid "Invoices Counter"
+msgstr "Števec dokumentov"
+
+#: Counters/edit.php:89
+msgid "select"
+msgstr "izberite"
+
+#: Counters/index.php:3
+msgid "Counters List"
+msgstr "Seznam nastanitvenih obratov"
+
+#: Eturizem/send_guest_book.php:13
+msgid "EXPORT: Upload eTurizem XML"
+msgstr "IZVOZ: Podpis eTurizem XML"
+
+#: Eturizem/send_guest_book.php:27 Eturizem/send_monthly_report.php:27
+msgid "Private key password"
+msgstr "Geslo privatnega ključa"
+
+#: Eturizem/send_guest_book.php:33 Eturizem/send_monthly_report.php:33
+msgid "Sign and Send"
+msgstr "Podpiši in pošlji"
+
+#: Eturizem/send_guest_book.php:51 Eturizem/send_monthly_report.php:54
+msgid "EXPORT: eTurizem Errors"
+msgstr "IZVOZ: Prišlo je do napake"
+
+#: Eturizem/send_guest_book.php:51 Eturizem/send_monthly_report.php:54
+msgid "EXPORT: eTurizem Success"
+msgstr "IZVOZ: Zaključeno pošiljanje"
+
+#: Eturizem/send_guest_book.php:57 Eturizem/send_monthly_report.php:62
+#: Eturizem/send_monthly_report.php:141
+msgid "Status"
+msgstr "Status"
+
+#: Eturizem/send_guest_book.php:61 Eturizem/send_guest_book.php:70
+#: Eturizem/send_monthly_report.php:66 Eturizem/send_monthly_report.php:75
+msgid "Message"
+msgstr "Opis"
+
+#: Eturizem/send_guest_book.php:64 Eturizem/send_monthly_report.php:69
+msgid "Show/Hide Details"
+msgstr "Prikaži/skrij podrobnosti"
+
+#: Eturizem/send_guest_book.php:74 Eturizem/send_monthly_report.php:79
+msgid "XML"
+msgstr "XML"
+
+#: Eturizem/send_guest_book.php:87
+msgid "EXPORT: Registrations to eTurizem format"
+msgstr "IZVOZ: Pošiljanje v eTurizem"
+
+#: Eturizem/send_guest_book.php:105 Rooms/report_booked.php:27
+msgid "Date"
+msgstr "Datum"
+
+#: Eturizem/send_guest_book.php:120 Eturizem/send_monthly_report.php:177
+msgid "Send"
+msgstr "Pošlji"
+
+#: Eturizem/send_monthly_report.php:13
+msgid "EXPORT: eTurizem Monthly Report XML"
+msgstr "IZVOZ: eTurizem mesečno poročilo"
+
+#: Eturizem/send_monthly_report.php:41
+msgid "Data Preview"
+msgstr "Predogled"
+
+#: Eturizem/send_monthly_report.php:60
+msgid "Data Results"
+msgstr "Rezultat"
+
+#: Eturizem/send_monthly_report.php:93
+msgid "EXPORT: eTurizem Monthly Report"
+msgstr "IZVOZ: eTurizem mesečno poročilo"
+
+#: Eturizem/send_monthly_report.php:116 Registrations/report_analytics.php:20
+#: Registrations/report_guests.php:20 Registrations/report_services.php:20
+#: Reservations/report_analytics.php:20 Rooms/report_booked.php:20
+#: Rooms/report_vacancies.php:20
+msgid "Counter"
+msgstr "Nastanitveni obrat"
+
+#: Eturizem/send_monthly_report.php:128 Rooms/report_booked.php:39
+#: Rooms/report_booked.php:44
+msgid "Month"
+msgstr "Mesec"
+
+#: Eturizem/send_monthly_report.php:153
+msgid "Additional Beds"
+msgstr "Dodatna ležišča"
+
+#: Eturizem/send_monthly_report.php:162
+msgid "Units Sold"
+msgstr "Št. prodanih nast. enot"
+
+#: Eturizem/send_monthly_report.php:170
+msgid "Workday Count"
+msgstr "Št. obratovalnih dni"
+
+#: Registrations/edit.php:7
+msgid "Add Registration"
+msgstr "Nova prijava"
+
+#: Registrations/edit.php:7
+msgid "Edit Registration"
+msgstr "Uredi prijavo"
+
+#: Registrations/edit.php:17 Registrations/view.php:25
+msgid "Are you sure you want to delete this registration?"
+msgstr "Ste prepričani, da želite izbrisati prijavo?"
+
+#: Registrations/edit.php:21
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: Registrations/edit.php:62 Registrations/index.php:99
+#: Registrations/pdf/report_guests.php:6
+#: Registrations/pdf/report_services.php:6 Registrations/view.php:34
+msgid "Client"
+msgstr "Klient"
+
+#: Registrations/edit.php:72
+msgid "Please Enter Client"
+msgstr "Vpišite klienta"
+
+#: Registrations/edit.php:81
+msgid "Please pick a client from client's list."
+msgstr "Izberite klienta iz seznama ali vpišite novega."
+
+#: Registrations/edit.php:99 Reservations/edit.php:91 Reservations/view.php:55
+msgid "Address"
+msgstr "Naslov"
+
+#: Registrations/edit.php:113
+msgid "Date and place of birth"
+msgstr "Datum in kraj rojstva"
+
+#: Registrations/edit.php:128
+msgid "Client Identification"
+msgstr "Identifikacija gosta"
+
+#: Registrations/edit.php:134 Registrations/edit.php:158
+#: Registrations/edit.php:231 Registrations/index.php:98
+msgid "Kind"
+msgstr "Tip"
+
+#: Registrations/edit.php:152
+msgid "Registration Dates"
+msgstr "Datum prijave in odjave"
+
+#: Registrations/edit.php:162 Registrations/index.php:118
+#: Registrations/view.php:7
+msgid "Registration"
+msgstr "Prijava"
+
+#: Registrations/edit.php:163 Registrations/index.php:118
+#: Registrations/view.php:7
+msgid "Cancellation"
+msgstr "Storno"
+
+#: Registrations/edit.php:172 Reservations/edit.php:115
+msgid "Start"
+msgstr "Prihod"
+
+#: Registrations/edit.php:174 Registrations/edit.php:187
+#: Reservations/edit.php:117 Reservations/edit.php:130
+msgid "Invalid Date Format."
+msgstr "Napačna oblika datuma."
+
+#: Registrations/edit.php:175
+msgid "Invalid or Overlapping Dates"
+msgstr "Neveljaven datum ali pa se prekriva z obstoječo prijavo/rezervacijo."
+
+#: Registrations/edit.php:176
+msgid "Overlapping with Reservations"
+msgstr "Datumi se prekrivajo z obstoječo rezervacijo"
+
+#: Registrations/edit.php:185 Reservations/edit.php:128
+msgid "End"
+msgstr "Odhod"
+
+#: Registrations/edit.php:195 Registrations/edit.php:201
+#: Registrations/index.php:100 Registrations/pdf/report_analytics.php:5
+#: Registrations/pdf/report_guests.php:5
+#: Registrations/pdf/report_services.php:5 Registrations/view.php:77
+#: Reservations/edit.php:139 Reservations/edit.php:145
+#: Reservations/pdf/report_analytics.php:5 Reservations/view.php:75
+#: element/registrations_history.php:35
+msgid "Room"
+msgstr "Soba"
+
+#: Registrations/edit.php:213 Registrations/index.php:101
+#: Registrations/view.php:81
+msgid "Service"
+msgstr "Usluge"
+
+#: Registrations/edit.php:216
+msgid "None"
+msgstr "- brez -"
+
+#: Registrations/edit.php:225
+msgid "Tourist TAX"
+msgstr "Turistična taksa"
+
+#: Registrations/edit.php:243 Registrations/view.php:93
+msgid "Amount"
+msgstr "Znesek"
+
+#: Registrations/edit.php:270
+msgid "Add Person"
+msgstr "Vpis klienta"
+
+#: Registrations/edit.php:271
+msgid "Edit Person"
+msgstr "Urejanje klienta"
+
+#: Registrations/index.php:12
+msgid "Today"
+msgstr "Danes"
+
+#: Registrations/index.php:49
+msgid "All Rooms"
+msgstr "vse sobe"
+
+#: Registrations/index.php:61
+msgid "all rooms"
+msgstr "vse sobe"
+
+#: Registrations/index.php:73
+msgid "Registrations for {0} in {1} for {2}"
+msgstr "Registracije za {0} v {1} za {2}"
+
+#: Registrations/index.php:97
+msgid "Start - End"
+msgstr "Prihod - Odhod"
+
+#: Registrations/index.php:111 element/registrations_history.php:45
+msgid "No registrations found."
+msgstr "Ni vpisanih prijav."
+
+#: Registrations/index.php:121
+msgid "Goto Client"
+msgstr "Na klienta"
+
+#: Registrations/pdf/report_analytics.php:1
+msgid "Registrations for {1} on {0}"
+msgstr "Prijave za {1} na {0}"
+
+#: Registrations/pdf/report_analytics.php:6 Registrations/view.php:69
+#: Reservations/pdf/report_analytics.php:6 Reservations/view.php:67
+#: element/registrations_history.php:34
+msgid "Date Span"
+msgstr "Od-do datuma"
+
+#: Registrations/pdf/report_guests.php:1
+msgid "Guests for {1} on {0}"
+msgstr "Gostje za {1} na {0}"
+
+#: Registrations/pdf/report_guests.php:7
+#: Registrations/pdf/report_services.php:7
+msgid "Date span"
+msgstr "Od-do"
+
+#: Registrations/pdf/report_services.php:1
+msgid "Services for {1} on {0}"
+msgstr "Usluge za {1} na {0}"
+
+#: Registrations/report_analytics.php:5
+msgid "REPORT: Registrations"
+msgstr "IZPIS: Prijave"
+
+#: Registrations/report_analytics.php:28 Registrations/report_guests.php:28
+#: Registrations/report_services.php:28 Reservations/report_analytics.php:28
+#: Rooms/report_vacancies.php:28
+msgid "Registration Date"
+msgstr "Datum prijave"
+
+#: Registrations/report_analytics.php:36 Registrations/report_guests.php:36
+#: Registrations/report_services.php:36 Reservations/report_analytics.php:36
+#: Rooms/report_booked.php:63 Rooms/report_vacancies.php:36
+msgid "Print"
+msgstr "Tiskaj"
+
+#: Registrations/report_guests.php:5
+msgid "REPORT: Guests"
+msgstr "IZPIS: Gostje"
+
+#: Registrations/report_services.php:5
+msgid "REPORT: Services"
+msgstr "IZPIS: Usluge"
+
+#: Registrations/view.php:38 Reservations/create_invoice.php:145
+msgid "ZIP and City"
+msgstr "Pošta in kraj"
+
+#: Registrations/view.php:39 Reservations/create_invoice.php:176
+#: Reservations/edit.php:99 Reservations/view.php:59
+msgid "Country"
+msgstr "Država"
+
+#: Registrations/view.php:45
+msgid "Birth Date"
+msgstr "Datum rojstva"
+
+#: Registrations/view.php:49
+msgid "Birth Place"
+msgstr "Kraj rojstva"
+
+#: Registrations/view.php:57
+msgid "Identification"
+msgstr "Identifikacija"
+
+#: Registrations/view.php:89
+msgid "Tourist Tax"
+msgstr "Turistična taksa"
+
+#: Registrations/view.php:102 Registrations/view.php:110
+msgid "ETurizem Status"
+msgstr "ETurizem"
+
+#: Registrations/view.php:103
+msgid "NOT Sent"
+msgstr "ŠE NEODDANO"
+
+#: Registrations/view.php:111
+msgid "Sent"
+msgstr "ODDANO"
+
+#: Registrations/view.php:114
+msgid "GUID"
+msgstr "Paket"
+
+#: Registrations/view.php:118
+msgid "Time"
+msgstr "Datum in čas"
+
+#: Reservations/create_invoice.php:9
+msgid "Add an Invoice #{0} <span class=\"light\">({1})</span>"
+msgstr "Vpis dokumenta #{0} <span class=\"light\">({1})</span>"
+
+#: Reservations/create_invoice.php:15
+msgid "Edit an Invoice #{0} <span class=\"light\">({1})</span>"
+msgstr "Urejanje dokumenta #{0} <span class=\"light\">({1})</span>"
+
+#: Reservations/create_invoice.php:109
+msgid "Invoice no"
+msgstr "Št. dokumenta"
+
+#: Reservations/create_invoice.php:123
+msgid "Receiver"
+msgstr "Prejemnik"
+
+#: Reservations/create_invoice.php:130
+msgid "Name/Surname OR Company Title"
+msgstr "Ime in priimek ALI naziv podjetja"
+
+#: Reservations/create_invoice.php:152
+msgid "ZIP"
+msgstr "Poštna št."
+
+#: Reservations/create_invoice.php:196
+msgid "Dates"
+msgstr "Datumi"
+
+#: Reservations/create_invoice.php:204
+msgid "Date of issue"
+msgstr "Datum izdaje"
+
+#: Reservations/create_invoice.php:206 Reservations/create_invoice.php:271
+#: Reservations/create_invoice.php:284
+msgid "Blank"
+msgstr "brez"
+
+#: Reservations/create_invoice.php:218
+msgid "Description"
+msgstr "Besedilo"
+
+#: Reservations/create_invoice.php:270
+msgid "Service date"
+msgstr "Datum storitve"
+
+#: Reservations/create_invoice.php:283
+msgid "Expiration date"
+msgstr "Datum valute"
+
+#: Reservations/create_invoice.php:296
+msgid "Analytics"
+msgstr "Analitika"
+
+#: Reservations/create_invoice.php:316
+msgid "Are you sure you want to unlink item?"
+msgstr "Ste prepričani, da želite uporabiti nepovezan artikel?"
+
+#: Reservations/create_invoice.php:326
+msgid "There are some errors. Please check your data and try again."
+msgstr "V vpisanih podatkih so napake. Preverite vnose."
+
+#: Reservations/edit.php:7
+msgid "Add Reservation #{0}"
+msgstr "Vpis rezervacije #{0}"
+
+#: Reservations/edit.php:9
+msgid "Edit Reservation #{0}"
+msgstr "Urejanje rezervacije #{0}"
+
+#: Reservations/edit.php:23 Reservations/view.php:25
+msgid "Are you sure you want to delete this reservation?"
+msgstr "Ste prepričani, da želite izbrisati rezervacijo?"
+
+#: Reservations/edit.php:27 Reservations/view.php:29
+msgid "Create Registration"
+msgstr "Prenesi v prijavo"
+
+#: Reservations/edit.php:78
+msgid "Reservator"
+msgstr "Stranka"
+
+#: Reservations/edit.php:84
+msgid "Surname and Name"
+msgstr "Priimek in ime"
+
+#: Reservations/edit.php:110
+msgid "Reservation Dates"
+msgstr "Datumi"
+
+#: Reservations/edit.php:118 Reservations/edit.php:131
+msgid "Invalid or Overlapping Date"
+msgstr "Neveljaven datum ali pa se prekriva z obstoječo prijavo/rezervacijo"
+
+#: Reservations/edit.php:119
+msgid "Overlapping with Registrations"
+msgstr "Datumi se prekrivajo z obstoječo prijavo"
+
+#: Reservations/edit.php:157
+msgid "No. Persons"
+msgstr "Št. oseb"
+
+#: Reservations/edit.php:167 Reservations/view.php:87
+msgid "Notes"
+msgstr "Opombe"
+
+#: Reservations/index.php:89
+msgid "Reservations for {0} for {1} {2}"
+msgstr "Rezervacije {0} za {1} {2}"
+
+#: Reservations/index.php:117 Rooms/index.php:31
+msgid "Beds"
+msgstr "Postelje"
+
+#: Reservations/index.php:359
+msgid "Enter New Reservation"
+msgstr "Nova rezervacija"
+
+#: Reservations/pdf/report_analytics.php:1
+msgid "Reservations for {1} on {0}"
+msgstr "Rezervacije za {1} na {0}"
+
+#: Reservations/preview_invoice.php:19
+msgid "Back to Reservation"
+msgstr "Nazaj na rezervacijo"
+
+#: Reservations/preview_invoice.php:27 Reservations/preview_invoice.php:37
+msgid "Send via Email"
+msgstr "Pošlji na email"
+
+#: Reservations/preview_invoice.php:34 Reservations/view.php:100
+msgid "Reservation Invoice"
+msgstr "Predračun za rezervacijo"
+
+#: Reservations/report_analytics.php:5
+msgid "REPORT: Reservations"
+msgstr "IZPIS: Rezervacije"
+
+#: Reservations/view.php:7
+msgid "Reservation"
+msgstr "Rezervacija"
+
+#: Reservations/view.php:38
+msgid "Create Invoice"
+msgstr "Izdelaj predračun"
+
+#: Reservations/view.php:79
+msgid "Persons"
+msgstr "Št. gostov"
+
+#: Reservations/view.php:105
+msgid "delete"
+msgstr "Briši"
+
+#: Reservations/view.php:105
+msgid "Are you sure?"
+msgstr "Ste prepričani?"
+
+#: RoomTypes/edit.php:7
+msgid "Add Room Type"
+msgstr "Nova klasifikacija sobe"
+
+#: RoomTypes/edit.php:7
+msgid "Edit Room Type"
+msgstr "Urejanje klasifikacije sobe"
+
+#: RoomTypes/index.php:4
+msgid "Room Types List"
+msgstr "Seznam klasifikacij"
+
+#: Rooms/edit.php:7
+msgid "Edit Room"
+msgstr "Urejanje sobe"
+
+#: Rooms/edit.php:7
+msgid "Add Room"
+msgstr "Nova soba"
+
+#: Rooms/edit.php:65
+msgid "Room Type"
+msgstr "Klasifikacija sobe"
+
+#: Rooms/edit.php:75
+msgid "No. of Beds"
+msgstr "Št. postelj"
+
+#: Rooms/edit.php:81
+msgid "Invoice Data"
+msgstr "Podatki fakture"
+
+#: Rooms/edit.php:86
+msgid "Price Per Day."
+msgstr "Cena na dan."
+
+#: Rooms/edit.php:94
+msgid "VAT"
+msgstr "DDV"
+
+#: Rooms/index.php:2 Rooms/index.php:4
+msgid "Room List"
+msgstr "Seznam sob"
+
+#: Rooms/index.php:27
+msgid "Type"
+msgstr "Klasifikacija"
+
+#: Rooms/pdf/report_booked.php:4
+msgid "Booked Rooms for {0}"
+msgstr "Oddane sobe za {0}"
+
+#: Rooms/pdf/report_booked.php:38
+msgid "Total Room Count"
+msgstr "Skupaj oddanih sob"
+
+#: Rooms/pdf/report_vacancies.php:1
+msgid "Vacancies for {1} on {0}"
+msgstr "Proste kapacitete za {1} na {0}"
+
+#: Rooms/pdf/report_vacancies.php:38
+msgid "Total Free Bed Count"
+msgstr "Skupaj prostih postelj"
+
+#: Rooms/report_booked.php:5 Rooms/report_vacancies.php:5
+msgid "REPORT: Vacancies"
+msgstr "IZPIS: Proste kapacitete"
+
+#: Rooms/report_booked.php:53
+msgid "Year"
+msgstr "Leto"
+
+#: ServiceTypes/edit.php:7
+msgid "Add Service Type"
+msgstr "Vpis usluge"
+
+#: ServiceTypes/edit.php:7
+msgid "Edit Service Type"
+msgstr "Urejanje usluge"
+
+#: ServiceTypes/index.php:3
+msgid "Service Types List"
+msgstr "Usluge"
+
+#: Users/change_password.php:4
+msgid "Set new password for {0}"
+msgstr "Nastavi novo geslo za {0}"
+
+#: Users/change_password.php:10
+msgid "New Password"
+msgstr "Novo geslo"
+
+#: Users/change_password.php:10
+msgid "Password is required, format must be valid."
+msgstr "Geslo je zahtevano!"
+
+#: Users/change_password.php:11 Users/edit.php:100 Users/properties.php:85
+msgid "Repeat Password"
+msgstr "Ponovi geslo"
+
+#: Users/change_password.php:11 Users/properties.php:69 Users/properties.php:89
+msgid "Passwords do not match."
+msgstr "Gesli se ne ujemata"
+
+#: Users/change_password.php:14
+msgid "Change"
+msgstr "Spremeni"
+
+#: Users/edit.php:7
+msgid "Edit User"
+msgstr "Uredi uporabnika"
+
+#: Users/edit.php:47
+msgid "Active User"
+msgstr "Aktiven"
+
+#: Users/edit.php:54
+msgid "Hidden User"
+msgstr "Skrit"
+
+#: Users/edit.php:60 Users/login.php:5
+msgid "Login"
+msgstr "Prijava"
+
+#: Users/edit.php:72
+msgid "Root"
+msgstr "Skrbnik"
+
+#: Users/edit.php:73
+msgid "Admin"
+msgstr "Administrator"
+
+#: Users/edit.php:74
+msgid "Editor"
+msgstr "Receptor"
+
+#: Users/edit.php:75
+msgid "Reader"
+msgstr "Bralec"
+
+#: Users/edit.php:92 Users/edit.php:129 Users/login.php:29
+#: Users/properties.php:77 Users/properties.php:119
+msgid "Password"
+msgstr "Geslo"
+
+#: Users/edit.php:113 Users/properties.php:103
+msgid "Certificate"
+msgstr "Certifikat"
+
+#: Users/index.php:3 Users/index.php:13
+msgid "All"
+msgstr "Vsi"
+
+#: Users/index.php:5 Users/index.php:15
+msgid "Inactive"
+msgstr "Neaktivni"
+
+#: Users/index.php:8 Users/index.php:14
+msgid "Active"
+msgstr "Aktivni"
+
+#: Users/index.php:19
+msgid "{0} Users"
+msgstr "{0} uporabniki"
+
+#: Users/login.php:40
+msgid "Remember me on this computer"
+msgstr "Zapomni si me na tem računalniku"
+
+#: Users/login.php:46
+msgid "OK"
+msgstr "OK"
+
+#: Users/login.php:53
+#, fuzzy
+#| msgid "Private key password"
+msgid "Forgot your password?"
+msgstr "Geslo privatnega ključa"
+
+#: Users/properties.php:7
+msgid "My Properties"
+msgstr "Nastavitve"
+
+#: Users/properties.php:51
+msgid "Avatar"
+msgstr "Slika"
+
+#: Users/properties.php:60
+msgid "Change Password"
+msgstr "Sprememba gesla"
+
+#: Users/properties.php:65
+msgid "Current Password"
+msgstr "Trenutno geslo"
+
+#: Users/properties.php:68 Users/properties.php:88
+msgid "Must not be empty."
+msgstr "Geslo ne sme ostati prazno."
+
+#: Users/reset.php:25
+msgid "Email is required, format must be valid."
+msgstr "Email naslov je obvezen podatek. Preverja se veljavnost."
+
+#: Users/reset.php:33
+msgid "Request new Password"
+msgstr "Zahtevaj novo geslo"
+
+#: Users/view.php:4
+msgid "User data for {0}"
+msgstr "Uporabniški podatki za {0}"
+
+#: Users/view.php:19
+msgid "Are you sure you want to delete this user?"
+msgstr "Ste prepričani, da želite izbrisati uporabnika?"
+
+#: element/registrations_history.php:25
+msgid "Registrations History for {0}"
+msgstr "Zgodovina prijav za {0}"
+
+#: layout/default.php:72
+msgid "Settings"
+msgstr "Nastavitve"
+
+#: layout/default.php:74
+msgid "Logout"
+msgstr "Odjava"
+
+#: layout/error.php:40
+msgid "Back"
+msgstr "Nazaj"
+
+#~ msgid "Hotel Desk"
+#~ msgstr "Recepcija"
+
+#~ msgid "Default Unit"
+#~ msgstr "Neimenovana enota"
+
+#~ msgid "Sex"
+#~ msgstr "Spol"
+
+#~ msgid "Male"
+#~ msgstr "Moški"
+
+#~ msgid "Female"
+#~ msgstr "Ženski"
+
+#~ msgid "Date of Birth"
+#~ msgstr "Datum rojstva"
+
+#~ msgid "Place of Birth"
+#~ msgstr "Kraj rojstva"
+
+#~ msgid "Company Info"
+#~ msgstr "Podatki podjetja"
+
+#~ msgid "Tax No"
+#~ msgstr "Davčna št."
+
+#~ msgid "Company tax number is required field."
+#~ msgstr "Davčna številka je obvezen podatek."
+
+#~ msgid "Company street is required field."
+#~ msgstr "Ulica je obvezen podatek."
+
+#~ msgid "Please enter zip and city."
+#~ msgstr "Vpišite poštno št. in kraj."
+
+#~ msgid "P12 Cert Store"
+#~ msgstr "P12 certifikat"
+
+#~ msgid ""
+#~ "WARNING! Certificate is already stored for this user. Uploading new file "
+#~ "will overwrite existing certificate."
+#~ msgstr ""
+#~ "POZOR! Certifikat je že shranjen. V primeru, da izberete novo datoteko, "
+#~ "bo prepisala obstoječi certifikat."
+
+#~ msgid "Error"
+#~ msgstr "Napaka"
+
+#~ msgid "Registrations for"
+#~ msgstr "Prijave za"
+
+#~ msgid "in"
+#~ msgstr "v"
+
+#~ msgid "for"
+#~ msgstr "za"
+
+#~ msgid "Date and Place of Birth"
+#~ msgstr "Datum in kraj rojstva"
+
+#~ msgid "Document no"
+#~ msgstr "Dokument št."
+
+#~ msgid "Reservations for"
+#~ msgstr "Rezervacije za"
+
+#~ msgid "Export"
+#~ msgstr "Izvoz"
+
+#~ msgid "eGost"
+#~ msgstr "eGost"
+
+#~ msgid "Izberite klienta iz baze kontaktov."
+#~ msgstr "Izberite klienta iz baze kontaktov."
+
+#~ msgid "Nationality"
+#~ msgstr "Državljanstvo"
+
+#~ msgid "Mat. No"
+#~ msgstr "Matična št."
+
+#~ msgid "Company mat. number is required field."
+#~ msgstr "Matična št. je obvezen podatek."
+
+#~ msgid "EXPORT: Registrations to eGost format"
+#~ msgstr "IZVOZ: Prijave v format eGost"
+
+#~ msgid "Registrations on {0}"
+#~ msgstr "Prijave na {0}"
+
+#~ msgid "Reservation Date"
+#~ msgstr "Datum rezervacije"
+
+#~ msgid "Name and Surname"
+#~ msgstr "Ime in priimek"
+
+#~ msgid "Room: {0}"
+#~ msgstr "Soba: {0}"
+
+#~ msgid "Edit Registraiont"
+#~ msgstr "Urejanje prijave"
