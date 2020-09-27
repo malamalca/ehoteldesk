@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
-use App\Model\Table\IsOwnedByTrait;
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -11,7 +11,6 @@ use Cake\Validation\Validator;
  * ServiceTypes Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Owners
- *
  * @method \App\Model\Entity\ServiceType get($primaryKey, $options = [])
  * @method \App\Model\Entity\ServiceType newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\ServiceType[] newEntities(array $data, array $options = [])
@@ -19,7 +18,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\ServiceType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\ServiceType[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\ServiceType findOrCreate($search, callable $callback = null)
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ServiceTypesTable extends Table
@@ -43,10 +41,10 @@ class ServiceTypesTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Companies', [
-            'foreignKey' => 'company_id'
+            'foreignKey' => 'company_id',
         ]);
         $this->belongsTo('Registrations', [
-            'foreignKey' => 'service_id'
+            'foreignKey' => 'service_id',
         ]);
     }
 
@@ -89,8 +87,8 @@ class ServiceTypesTable extends Table
     /**
      * Returns list of rooms for specified owner
      *
-     * @param uuid $findType Company Id.
-     * @param bool $ownerId Show only active accounts.
+     * @param string $findType Finder type.
+     * @param string $ownerId Owner id.
      * @return mixed
      */
     public function findForOwner($findType, $ownerId)

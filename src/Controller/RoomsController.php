@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\Core\Configure;
-use Cake\Database\Expression\QueryExpression;
 use Cake\I18n\Date;
 use Cake\I18n\FrozenDate;
 use Cake\ORM\TableRegistry;
@@ -15,35 +15,10 @@ use Cake\ORM\TableRegistry;
  */
 class RoomsController extends AppController
 {
-
-    /**
-     * isAuthorized method.
-     *
-     * @param array $user User
-     * @return bool
-     */
-    /*public function isAuthorized($user)
-    {
-        switch ($this->getRequest()->getParam('action')) {
-            case 'index':
-            case 'reportVacancies':
-            case 'reportBooked':
-                return true;
-            case 'add':
-                return $this->userLevel('admin');
-            case 'edit':
-            case 'delete':
-                return !empty($this->getRequest()->getParam('pass.0')) && $this->userLevel('admin') &&
-                    $this->Rooms->isOwnedBy($this->getRequest()->getParam('pass.0'), $this->getCurrentUser()->get('company_id'));
-            default:
-                return false;
-        }
-    }*/
-
     /**
      * Index method
      *
-     * @return \Cake\Network\Response|void
+     * @return \Cake\Http\Response|void
      */
     public function index()
     {
@@ -51,7 +26,12 @@ class RoomsController extends AppController
             ->order('title')
             ->all();
 
-        $roomTypes = $this->Rooms->RoomTypes->findForOwner('list', $this->Authorization->applyScope($this->Rooms->RoomTypes->find('list')))->toArray();
+        $roomTypes = $this->Rooms->RoomTypes
+            ->findForOwner(
+                'list',
+                $this->Authorization->applyScope($this->Rooms->RoomTypes->find('list'))
+            )
+            ->toArray();
         $this->set(compact('rooms', 'roomTypes'));
         $this->set('_serialize', ['rooms']);
     }
@@ -59,7 +39,7 @@ class RoomsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|void Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -70,8 +50,7 @@ class RoomsController extends AppController
      * Edit method
      *
      * @param string|null $id Room id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @return \Cake\Http\Response|void Redirects on successful edit, renders view otherwise.
      */
     public function edit($id = null)
     {
@@ -94,12 +73,14 @@ class RoomsController extends AppController
             }
         }
 
-        $roomTypes = $this->Rooms->RoomTypes->findForOwner('list', $this->Authorization->applyScope($this->Rooms->RoomTypes->find('list'), 'index'))->toArray();
+        $roomTypes = $this->Rooms->RoomTypes
+            ->findForOwner('list', $this->Authorization->applyScope($this->Rooms->RoomTypes->find('list'), 'index'))
+            ->toArray();
 
         if (Configure::read('useInvoices')) {
             $vatLevels = TableRegistry::get('LilInvoices.Vats')->find('list', [
                     'keyField' => 'id',
-                    'valueField' => 'descript'
+                    'valueField' => 'descript',
                 ])
                 ->where(['owner_id' => $this->getCurrentUser()->get('company_id')])
                 ->order(['descript'])
@@ -114,8 +95,7 @@ class RoomsController extends AppController
      * Delete method
      *
      * @param string|null $id Room id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @return \Cake\Http\Response|null Redirects to index.
      */
     public function delete($id = null)
     {
@@ -126,7 +106,8 @@ class RoomsController extends AppController
         if ($this->Rooms->delete($room)) {
             $this->Flash->success(__('The room has been deleted.'));
         } else {
-            if ($err = $room->getError('id')) {
+            $err = $room->getError('id');
+            if (!empty($err)) {
                 if (isset($err['existsInReservations'])) {
                     $this->Flash->error(__('The room is linked to a reservation and cannot be deleted.'));
                 }
@@ -146,12 +127,16 @@ class RoomsController extends AppController
     public function reportVacancies()
     {
         $CountersTable = TableRegistry::get('Counters');
-        $counters = $CountersTable->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))->combine('id', 'title')->toArray();
+        $counters = $CountersTable
+            ->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))
+            ->combine('id', 'title')
+            ->toArray();
         $this->set(compact('counters'));
 
         $this->Authorization->skipAuthorization();
 
-        if ($aDate = $this->getRequest()->getQuery('on')) {
+        $aDate = $this->getRequest()->getQuery('on');
+        if (!empty($aDate)) {
             error_reporting(0);
             $aDate = new FrozenDate($aDate);
             $this->viewBuilder()->setClassName('Lil.Pdf');
@@ -167,14 +152,14 @@ class RoomsController extends AppController
                     return $q->where([
                         'Reservations.counter_id' => $this->getRequest()->getQuery('counter'),
                         'Reservations.start <=' => $aDate,
-                        'Reservations.end >=' => $aDate
+                        'Reservations.end >=' => $aDate,
                     ]);
                 })
                 ->notMatching('Registrations', function ($q) use ($aDate) {
                     return $q->where([
                         'Registrations.counter_id' => $this->getRequest()->getQuery('counter'),
                         'Registrations.start <=' => $aDate,
-                        'Registrations.end >=' => $aDate
+                        'Registrations.end >=' => $aDate,
                     ]);
                 })
                 ->contain(['RoomTypes'])
@@ -207,12 +192,16 @@ class RoomsController extends AppController
     public function reportBooked()
     {
         $CountersTable = TableRegistry::get('Counters');
-        $counters = $CountersTable->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))->combine('id', 'title')->toArray();
+        $counters = $CountersTable
+            ->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))
+            ->combine('id', 'title')
+            ->toArray();
         $this->set(compact('counters'));
 
         $this->Authorization->skipAuthorization();
 
-        if ($span = $this->getRequest()->getQuery('span')) {
+        $span = $this->getRequest()->getQuery('span');
+        if (!empty($span)) {
             if (in_array($span, ['date', 'month'])) {
                 error_reporting(0);
 
@@ -224,7 +213,10 @@ class RoomsController extends AppController
                     $aSpanMonth = $this->getRequest()->getQuery('month.month');
                     $aSpanYear = $this->getRequest()->getQuery('month.year');
                     $aStartDate = new Date(implode('-', [$aSpanYear, $aSpanMonth, '01']));
-                    $aDate = $this->getRequest()->getQuery('month.year') . '-' . $this->getRequest()->getQuery('month.month');
+                    $aDate = implode('-', [
+                        $this->getRequest()->getQuery('month.year'),
+                        $this->getRequest()->getQuery('month.month'),
+                    ]);
                     $aDays = cal_days_in_month(CAL_GREGORIAN, $aSpanMonth, $aSpanYear);
                 }
 
@@ -242,7 +234,7 @@ class RoomsController extends AppController
                             return $q->where([
                                 'Registrations.counter_id' => $this->getRequest()->getQuery('counter'),
                                 'Registrations.start <=' => $aStartDate,
-                                'Registrations.end >=' => $aStartDate
+                                'Registrations.end >=' => $aStartDate,
                             ]);
                         })
                         ->order(['Rooms.no', 'Rooms.title']);

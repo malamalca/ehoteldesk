@@ -1,15 +1,15 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Lib\ETurizem;
-use Cake\Core\Configure;
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\FrozenDate;
 use Cake\ORM\TableRegistry;
 
 /**
  * Eturizem controller
- *
  */
 class EturizemController extends AppController
 {
@@ -27,7 +27,7 @@ class EturizemController extends AppController
     /**
      * Export and send to eTurizem
      *
-     * @return \Cake\Network\Response|null Redirects.
+     * @return \Cake\Http\Response|null Redirects.
      */
     public function sendGuestBook()
     {
@@ -39,19 +39,20 @@ class EturizemController extends AppController
             return $this->redirect(['controller' => 'Users', 'action' => 'properties']);
         }
 
-
-        if ($step = $this->getRequest()->getQuery('step')) {
+        $step = $this->getRequest()->getQuery('step');
+        if (!empty($step)) {
             $aDate = $this->getRequest()->getQuery('on');
             $filter['owner'] = $this->getCurrentUser()->get('company_id');
             $filter['on'] = new FrozenDate($aDate);
             $filter['eturizem'] = 'notsent';
 
+            /** @var \App\Model\Table\RegistrationsTable $RegistrationsTable */
             $RegistrationsTable = TableRegistry::get('Registrations');
 
             $q = $this->Authorization->applyScope($RegistrationsTable->find(), 'index');
             $registrations = $RegistrationsTable->filter('all', $q, $filter);
 
-            if ($registrations->isEmpty()) {
+            if (empty($registrations)) {
                 $this->Flash->error(__('There are no registrations starting with specified date.'));
 
                 return $this->redirect(['action' => 'sendGuestBook', 'on' => $aDate]);
@@ -73,34 +74,62 @@ class EturizemController extends AppController
 
                     // validate
                     if (!$ETurizem->validateGuestBookSchema($data)) {
-                        $log = $ETurizem->log($this->getCurrentUser()->get('company_id'), ETurizem::ERROR_GB_SCHEMA, $data, $ETurizem->getLastErrorMessage());
+                        $log = $ETurizem->log(
+                            $this->getCurrentUser()->get('company_id'),
+                            ETurizem::ERROR_GB_SCHEMA,
+                            $data,
+                            $ETurizem->getLastErrorMessage()
+                        );
                         $this->Flash->error(__('There are errors in XML. Please check your data'));
 
-                        return $this->redirect(['action' => 'sendGuestBook', 'on' => $aDate, 'step' => 'error', 'log' => $log->id]);
+                        return $this->redirect([
+                            'action' => 'sendGuestBook',
+                            '?' => [ 'on' => $aDate, 'step' => 'error', 'log' => $log->id],
+                        ]);
                     }
 
                     $result = false;
                     $errorMessage = 'ok';
                     try {
-                        $result = $ETurizem->send($data, $this->getCurrentUser()->get('etur_username'), $this->getCurrentUser()->get('etur_password'), base64_decode($this->getCurrentUser()->get('etur_p12')), $pkPass);
-                    } catch (Exception $e) {
+                        $result = $ETurizem->send(
+                            $data,
+                            $this->getCurrentUser()->get('etur_username'),
+                            $this->getCurrentUser()->get('etur_password'),
+                            base64_decode($this->getCurrentUser()->get('etur_p12')),
+                            $pkPass
+                        );
+                    } catch (\Exception $e) {
                         $errorMessage = $e->getMessage();
                     }
 
-                    if ($result) {
-                        $log = $ETurizem->log($this->getCurrentUser()->get('company_id'), ETurizem::SUCCESS_GB, $data, $result['raw']);
+                    if (is_array($result)) {
+                        $log = $ETurizem->log(
+                            $this->getCurrentUser()->get('company_id'),
+                            ETurizem::SUCCESS_GB,
+                            $data,
+                            $result['raw']
+                        );
                         $RegistrationsTable->markEturizemSent($registrations, $result);
                         $this->Flash->success(__('ETurizem data has been successfully sent.'));
 
-                        return $this->redirect(['action' => 'sendGuestBook', 'on' => $aDate, 'step' => 'success', 'log' => $log->id]);
+                        return $this->redirect([
+                            'action' => 'sendGuestBook',
+                            '?' => ['on' => $aDate, 'step' => 'success', 'log' => $log->id],
+                        ]);
                     } else {
-                        $log = $ETurizem->log($this->getCurrentUser()->get('company_id'), ETurizem::ERROR_GB_SOAP, $data, $ETurizem->getLastErrorMessage());
+                        $log = $ETurizem->log(
+                            $this->getCurrentUser()->get('company_id'),
+                            ETurizem::ERROR_GB_SOAP,
+                            $data,
+                            $ETurizem->getLastErrorMessage()
+                        );
                         $this->Flash->error(__('An error occured while sending your data.'));
 
-                        return $this->redirect(['action' => 'sendGuestBook', 'on' => $aDate, 'step' => 'error', 'log' => $log->id]);
+                        return $this->redirect([
+                            'action' => 'sendGuestBook',
+                            '?' => ['on' => $aDate, 'step' => 'error', 'log' => $log->id],
+                        ]);
                     }
-
-                    break;
                 case 'error':
                 case 'success':
                     $EturizemLogsTable = TableRegistry::get('EturizemLogs');
@@ -114,12 +143,14 @@ class EturizemController extends AppController
                     $this->set('addXmlHeader', true);
             }
         }
+
+        return null;
     }
 
     /**
      * Export and send to monthly report eTurizem
      *
-     * @return \Cake\Network\Response|null Redirects.
+     * @return \Cake\Http\Response|null Redirects.
      */
     public function sendMonthlyReport()
     {
@@ -131,12 +162,14 @@ class EturizemController extends AppController
             return $this->redirect(['controller' => 'Users', 'action' => 'properties']);
         }
 
+        /** @var \App\Model\Table\CountersTable $CountersTable */
         $CountersTable = TableRegistry::get('Counters');
         $counter = null;
 
-        if ($step = $this->getRequest()->getQuery('step')) {
-
-            if (!$counterId = $this->getRequest()->getQuery('counter')) {
+        $step = $this->getRequest()->getQuery('step');
+        if (!empty($step)) {
+            $counterId = $this->getRequest()->getQuery('counter');
+            if (empty($counterId)) {
                 throw new NotFoundException(__('Counter not found'));
             }
             $counter = $CountersTable->get($counterId);
@@ -157,33 +190,61 @@ class EturizemController extends AppController
 
                     // validate
                     if (!$ETurizem->validateMonthlyReportSchema($data)) {
-                        $log = $ETurizem->log($this->getCurrentUser()->get('company_id'), ETurizem::ERROR_GB_SCHEMA, $data, $ETurizem->getLastErrorMessage());
+                        $log = $ETurizem->log(
+                            $this->getCurrentUser()->get('company_id'),
+                            ETurizem::ERROR_GB_SCHEMA,
+                            $data,
+                            $ETurizem->getLastErrorMessage()
+                        );
                         $this->Flash->error(__('There are errors in XML. Please check your data'));
 
-                        return $this->redirect(array_merge($this->getRequest()->getQuery(), ['action' => 'sendMonthlyReport', 'step' => 'error', 'log' => $log->id]));
+                        return $this->redirect(array_merge(
+                            $this->getRequest()->getQuery(),
+                            ['action' => 'sendMonthlyReport', '?' => ['step' => 'error', 'log' => $log->id]]
+                        ));
                     }
 
                     $result = false;
                     $errorMessage = 'ok';
                     try {
-                        $result = $ETurizem->send($data, $this->getCurrentUser()->get('etur_username'), $this->getCurrentUser()->get('etur_password'), base64_decode($this->getCurrentUser()->get('etur_p12')), $pkPass);
-                    } catch (Exception $e) {
+                        $result = $ETurizem->send(
+                            $data,
+                            $this->getCurrentUser()->get('etur_username'),
+                            $this->getCurrentUser()->get('etur_password'),
+                            base64_decode($this->getCurrentUser()->get('etur_p12')),
+                            $pkPass
+                        );
+                    } catch (\Exception $e) {
                         $errorMessage = $e->getMessage();
                     }
 
                     if ($result) {
-                        $log = $ETurizem->log($this->getCurrentUser()->get('company_id'), ETurizem::SUCCESS_GB, (string)$data, serialize($result));
+                        $log = $ETurizem->log(
+                            $this->getCurrentUser()->get('company_id'),
+                            ETurizem::SUCCESS_GB,
+                            (string)$data,
+                            serialize($result)
+                        );
                         $this->Flash->success(__('ETurizem data has been successfully sent.'));
 
-                        return $this->redirect(array_merge($this->getRequest()->getQuery(), ['action' => 'sendMonthlyReport', 'step' => 'success', 'log' => $log->id]));
+                        return $this->redirect(array_merge(
+                            $this->getRequest()->getQuery(),
+                            ['action' => 'sendMonthlyReport', '?' => ['step' => 'success', 'log' => $log->id]],
+                        ));
                     } else {
-                        $log = $ETurizem->log($this->getCurrentUser()->get('company_id'), ETurizem::ERROR_GB_SOAP, $data, $ETurizem->getLastErrorMessage());
+                        $log = $ETurizem->log(
+                            $this->getCurrentUser()->get('company_id'),
+                            ETurizem::ERROR_GB_SOAP,
+                            $data,
+                            $ETurizem->getLastErrorMessage()
+                        );
                         $this->Flash->error(__('An error occured while sending your data.'));
 
-                        return $this->redirect(array_merge($this->getRequest()->getQuery(), ['action' => 'sendMonthlyReport', 'step' => 'error', 'log' => $log->id]));
+                        return $this->redirect(array_merge(
+                            $this->getRequest()->getQuery(),
+                            ['action' => 'sendMonthlyReport', '?' => ['step' => 'error', 'log' => $log->id]],
+                        ));
                     }
-
-                    break;
                 case 'error':
                 case 'success':
                     $EturizemLogsTable = TableRegistry::get('EturizemLogs');
@@ -195,8 +256,16 @@ class EturizemController extends AppController
                     $this->set('addXmlHeader', true);
             }
         } else {
-            $counters = $CountersTable->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))->combine('id', 'title');
+            $counters = $CountersTable
+                ->findForOwner(
+                    'list',
+                    'V',
+                    $this->getCurrentUser()->get('company_id')
+                )
+                ->combine('id', 'title');
             $this->set(compact('counters', 'counter'));
         }
+
+        return null;
     }
 }

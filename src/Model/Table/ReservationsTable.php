@@ -1,13 +1,13 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
-use App\Model\Table\IsOwnedByTrait;
 use ArrayObject;
 use Cake\Event\Event;
 use Cake\I18n\Date;
 use Cake\I18n\FrozenDate;
 use Cake\ORM\Entity;
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
@@ -17,15 +17,14 @@ use Cake\Validation\Validator;
  * Reservations Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Companies
- *
  * @method \App\Model\Entity\Reservation get($primaryKey, $options = [])
  * @method \App\Model\Entity\Reservation newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Reservation newEmptyEntity(array $options = [])
  * @method \App\Model\Entity\Reservation[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\Reservation|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\Reservation patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Reservation[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Reservation findOrCreate($search, callable $callback = null)
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ReservationsTable extends Table
@@ -49,19 +48,19 @@ class ReservationsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Companies', [
-            'foreignKey' => 'company_id'
+            'foreignKey' => 'company_id',
         ]);
 
         $this->belongsTo('Counters', [
-            'foreignKey' => 'counter_id'
+            'foreignKey' => 'counter_id',
         ]);
 
         $this->belongsTo('Rooms', [
-            'foreignKey' => 'room_id'
+            'foreignKey' => 'room_id',
         ]);
         $this->belongsTo('Clients', [
             'className' => 'LilCrm.Contacts',
-            'foreignKey' => 'client_id'
+            'foreignKey' => 'client_id',
         ]);
     }
 
@@ -88,8 +87,8 @@ class ReservationsTable extends Table
                         $end = new FrozenDate($value);
 
                         return $end->gte(new FrozenDate($context['data']['start']));
-                    }
-                ]
+                    },
+                ],
             ])
             ->notEmptyString('name');
 
@@ -128,7 +127,7 @@ class ReservationsTable extends Table
      *
      * @param object $entity Reservation entity
      * @param bool $skipIdCheck Do not filter entity's own id
-     * @param uuid $excludeId Specified Id that should always be excluded.
+     * @param \App\Model\Table\uuid $excludeId Specified Id that should always be excluded.
      * @return bool
      */
     public function checkOverlap($entity, $skipIdCheck = false, $excludeId = null)
@@ -138,8 +137,8 @@ class ReservationsTable extends Table
             'room_id' => $entity->room_id,
             'AND' => [
                 'start <=' => $entity->end->toMutable()->addDays(-1),
-                'end >=' => $entity->start->toMutable()->addDays(1)
-            ]
+                'end >=' => $entity->start->toMutable()->addDays(1),
+            ],
         ];
         if ($entity->isNew() === false && $skipIdCheck === false) {
             $conditions['NOT']['id'] = $entity->id;
@@ -154,9 +153,9 @@ class ReservationsTable extends Table
     /**
      * beforeSave method
      *
-     * @param Event $event Event object.
-     * @param Entity $entity Entity object.
-     * @param ArrayObject $options Array object.
+     * @param \Cake\Event\Event $event Event object.
+     * @param \Cake\ORM\Entity $entity Entity object.
+     * @param \ArrayObject $options Array object.
      * @return bool
      */
     public function beforeSave(Event $event, Entity $entity, ArrayObject $options)
@@ -175,8 +174,9 @@ class ReservationsTable extends Table
      * Returns list of reservations for specified filter
      *
      * @param string $findType 'all', 'list',..
-     * @param array $filter Filter data
-     * @return array
+     * @param \Cake\ORM\Query $q Query object
+     * @param array $filter Filter array
+     * @return bool|array
      */
     public function filter($findType, $q, &$filter)
     {
@@ -205,7 +205,8 @@ class ReservationsTable extends Table
         }
 
         if (empty($filter['counter'])) {
-            if (!$defaultCounter = $this->Counters->findDefaultCounter('V', $filter['owner'])) {
+            $defaultCounter = $this->Counters->findDefaultCounter('V', $filter['owner']);
+            if (empty($defaultCounter)) {
                 return false;
             }
             $filter['counter'] = $defaultCounter->id;
@@ -216,8 +217,8 @@ class ReservationsTable extends Table
             'Reservations.counter_id' => $filter['counter'],
             'AND' => [
                 'Reservations.start <= ' => $filter['end'],
-                'Reservations.end >= ' => $filter['start']
-            ]
+                'Reservations.end >= ' => $filter['start'],
+            ],
         ];
 
         if (!empty($filter['room'])) {

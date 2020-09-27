@@ -1,7 +1,7 @@
 <?php
-namespace App\Controller;
+declare(strict_types=1);
 
-use App\Controller\AppController;
+namespace App\Controller;
 
 /**
  * RoomTypes Controller
@@ -10,7 +10,6 @@ use App\Controller\AppController;
  */
 class RoomTypesController extends AppController
 {
-
     /**
      * isAuthorized method.
      *
@@ -105,7 +104,8 @@ class RoomTypesController extends AppController
         if ($this->RoomTypes->delete($roomType)) {
             $this->Flash->success(__('The room type has been deleted.'));
         } else {
-            if ($err = $roomType->getError('id')) {
+            $err = $roomType->getError('id');
+            if (!empty($err)) {
                 if (isset($err['existsInRooms'])) {
                     $this->Flash->error(__('The room type is linked to a room and cannot be deleted.'));
                 }

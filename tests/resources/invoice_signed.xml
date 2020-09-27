@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fu="http://www.fu.gov.si/" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<soapenv:Header/>
+<soapenv:Body>
+<fu:InvoiceRequest Id="data">
+<fu:Header>
+<fu:MessageID>4e64a93a-40fa-4c02-afb1-488534b85e4c</fu:MessageID>
+<fu:DateTime>2015-08-07T13:05:24</fu:DateTime>
+</fu:Header>
+<fu:Invoice>
+<fu:TaxNumber>10039953</fu:TaxNumber>
+<fu:IssueDateTime>2015-08-07T13:05:24</fu:IssueDateTime>
+<fu:NumberingStructure>B</fu:NumberingStructure>
+<fu:InvoiceIdentifier>
+<fu:BusinessPremiseID>AABB</fu:BusinessPremiseID>
+<fu:ElectronicDeviceID>BLAG2</fu:ElectronicDeviceID>
+<fu:InvoiceNumber>145</fu:InvoiceNumber>
+</fu:InvoiceIdentifier>
+<fu:InvoiceAmount>66.71</fu:InvoiceAmount>
+<fu:PaymentAmount>1047.76</fu:PaymentAmount>
+<fu:TaxesPerSeller>
+<fu:VAT>
+<fu:TaxRate>22.00</fu:TaxRate>
+<fu:TaxableAmount>23.14</fu:TaxableAmount>
+<fu:TaxAmount>5.09</fu:TaxAmount>
+</fu:VAT>
+<fu:VAT>
+<fu:TaxRate>9.50</fu:TaxRate>
+<fu:TaxableAmount>35.14</fu:TaxableAmount>
+<fu:TaxAmount>3.34</fu:TaxAmount>
+</fu:VAT>
+</fu:TaxesPerSeller>
+<fu:OperatorTaxNumber>10039953</fu:OperatorTaxNumber>
+<fu:ProtectedID>34905bcff14b381039af2e9d7eee54bb</fu:ProtectedID>
+</fu:Invoice>
+<ds:Signature>
+  <ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+    <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+  <ds:Reference URI="#data"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>bgcRPFTc2+vNlRSDW4GToo54rqXYvtArgh34nhsePaA=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>rOBVLWNkqiCgRSjK9/+PsEC+cL+p44zQL815lamSyX4qcSrEwIVILWb9Kubweg7FUUvuffe19O7SLTpnej/0Iutd5i02MGu61mP1+nn86Qkx6hA5i56wOu8F14e3i9ipJ84izO2JRIKxg2tgyDd5uPRxt/6E88XKQqL6JAubsm9h/29/8gkol3LWo0oVSeXkeQdCMvjOKjvLBw2N904TujWYYoaUQUakPMLjB6ONdmcwO61UTdOISl3wxRQK0Eb6XXmiSeCp92ZyiApDAHN+ksPNKwVWM/r0iYpjiWCpKuATzzr65CMgqZ7lluSznWJkWRK3PKSrJnYin+3SPAwz+w==</ds:SignatureValue>
+<ds:KeyInfo><ds:X509Data><ds:X509SubjectName>CN=TESTNO PODJETJE 105,serialNumber=1,OU=10039953,OU=DavPotRacTEST,O=state-institutions,C=SI</ds:X509SubjectName><ds:X509IssuerSerial><ds:X509IssuerName>CN=Tax CA Test,O=state-institutions,C=SI</ds:X509IssuerName><ds:X509SerialNumber>3331418333528372528</ds:X509SerialNumber></ds:X509IssuerSerial></ds:X509Data></ds:KeyInfo></ds:Signature></fu:InvoiceRequest>
+</soapenv:Body>
+</soapenv:Envelope>

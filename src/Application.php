@@ -17,7 +17,6 @@ use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
-use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\I18n\Time;
@@ -29,6 +28,7 @@ use Cake\Routing\Router;
 use Lil\Plugin as LilPlugin;
 use LilCrm\Plugin as LilCrmPlugin;
 use LilInvoices\Plugin as LilInvoicesPlugin;
+use LilTaxRegisters\Plugin as LilTaxRegistersPlugin;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
@@ -73,6 +73,7 @@ class Application extends BaseApplication implements
         $this->addPlugin(LilPlugin::class, ['bootstrap' => true, 'routes' => true]);
         $this->addPlugin(LilCrmPlugin::class, ['bootstrap' => true, 'routes' => true]);
         $this->addPlugin(LilInvoicesPlugin::class, ['bootstrap' => true, 'routes' => true]);
+        $this->addPlugin(LilTaxRegistersPlugin::class, ['bootstrap' => true, 'routes' => true]);
     }
 
     /**

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
 trait IsOwnedByTrait
@@ -6,8 +8,8 @@ trait IsOwnedByTrait
     /**
      * Returns default counter
      *
-     * @param uuid $entityId Entity id.
-     * @param uuid $ownerId Owner Id.
+     * @param \App\Model\Table\uuid $entityId Entity id.
+     * @param \App\Model\Table\uuid $ownerId Owner Id.
      * @return mixed
      */
     public function isOwnedBy($entityId, $ownerId)

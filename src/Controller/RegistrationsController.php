@@ -1,37 +1,47 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\I18n\FrozenDate;
 use Cake\ORM\TableRegistry;
-use Cake\Routing\Router;
 
 /**
  * Registrations Controller
  *
  * @property \App\Model\Table\RegistrationsTable $Registrations
+ * @property \App\Model\Table\CountersTable $Counters
+ * @property \App\Model\Table\RoomsTable $Rooms
  */
 class RegistrationsController extends AppController
 {
     /**
      * Index method
      *
-     * @return \Cake\Network\Response|void
+     * @return \Cake\Http\Response|void
      */
     public function index()
     {
         $filter = (array)$this->getRequest()->getQuery();
         $filter['owner'] = $this->getCurrentUser()->get('company_id');
 
-        if (empty($filter['start']) || !$filter['start'] = FrozenDate::parseDate($filter['start'], 'yyyy-MM-dd')) {
+        if (empty($filter['start'])) {
             $filter['start'] = new FrozenDate();
+        } else {
+            $filter['start'] = FrozenDate::parseDate($filter['start'], 'yyyy-MM-dd');
+            if (!$filter['start']) {
+                $filter['start'] = new FrozenDate();
+            }
         }
 
         $q = $this->Authorization->applyScope($this->Registrations->find());
         $registrations = $this->Registrations->filter('all', $q, $filter);
 
-        $counters = $this->Registrations->Counters->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'));
-        $rooms = $this->Registrations->Rooms->findForOwner('list', $this->getCurrentUser()->get('company_id'));
+        $this->loadModel('Counters');
+        $counters = $this->Counters->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'));
+
+        $this->loadModel('Rooms');
+        $rooms = $this->Rooms->findForOwner('list', $this->getCurrentUser()->get('company_id'));
 
         unset($filter['owner']);
         unset($filter['end']);
@@ -44,8 +54,7 @@ class RegistrationsController extends AppController
      * View method
      *
      * @param string|null $id Registration id.
-     * @return \Cake\Network\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @return \Cake\Http\Response|void
      */
     public function view($id = null)
     {
@@ -56,10 +65,11 @@ class RegistrationsController extends AppController
         $this->set(compact('registration'));
         $this->set('_serialize', ['registration']);
     }
+
     /**
      * Add method
      *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     * @return void
      */
     public function add()
     {
@@ -70,8 +80,7 @@ class RegistrationsController extends AppController
      * Edit method
      *
      * @param string|null $id Registration id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @return \Cake\Http\Response|void Redirects on successful edit, renders view otherwise.
      */
     public function edit($id = null)
     {
@@ -91,24 +100,28 @@ class RegistrationsController extends AppController
             $registration->counter_id = $this->getRequest()->getQuery('counter');
 
             // duplicate reservation
-            if ($reservationId = $this->getRequest()->getQuery('reservation')) {
+            $reservationId = $this->getRequest()->getQuery('reservation');
+            if (!empty($reservationId)) {
+                /** @var \App\Model\Table\ReservationsTable $Reservations */
                 $Reservations = TableRegistry::get('Reservations');
-                if ($reservation = $Reservations->get($reservationId)) {
-                    $registration->counter_id = $reservation->counter_id;
-                    $registration->start = $reservation->start;
-                    $registration->end = $reservation->end;
-                    $registration->room_id = $reservation->room_id;
-                    $registration->surname = $reservation->name;
-                    $registration->street = $reservation->address;
-                }
+                $reservation = $Reservations->get($reservationId);
+
+                $registration->counter_id = $reservation->counter_id;
+                $registration->start = $reservation->start;
+                $registration->end = $reservation->end;
+                $registration->room_id = $reservation->room_id;
+                $registration->surname = $reservation->name;
+                $registration->street = $reservation->address;
                 //todo: $this->getRequest()->data['referer'] = false;
             }
-            if ($copyId = $this->getRequest()->getQuery('copy')) {
-                if ($sourceRegistration = $this->Registrations->get($copyId)) {
-                    $registration = $sourceRegistration;
-                    $registration->id = null;
-                    $registration->isNew(true);
-                }
+
+            $copyId = $this->getRequest()->getQuery('copy');
+            if (!empty($copyId)) {
+                $sourceRegistration = $this->Registrations->get($copyId);
+
+                $registration = $sourceRegistration;
+                $registration->id = '';
+                $registration->isNew(true);
             }
         }
 
@@ -119,30 +132,39 @@ class RegistrationsController extends AppController
 
             if ($this->Registrations->save($registration)) {
                 // delete reservation based on this registration
-                if (!empty($this->getRequest()->getData('reservation_id'))) {
+                $reservationId = $this->getRequest()->getData('reservation_id');
+                if (!empty($reservationId)) {
                     $Reservations = TableRegistry::get('Reservations');
-                    if ($reservation = $Reservations->get($this->getRequest()->getData('reservation_id'))) {
-                        $Reservations->delete($reservation);
-                    }
+                    $reservation = $Reservations->get($this->getRequest()->getData('reservation_id'));
+                    $Reservations->delete($reservation);
                 }
 
                 $this->Flash->success(__('The registration has been saved.'));
 
-                return $this->redirect(['action' => 'index', 'filter' =>
-                    ['counter' => $registration->counter_id, 'start' => $registration->start->toDateString()]]);
+                return $this->redirect([
+                    'action' => 'index',
+                    '?' => [
+                        'counter' => $registration->counter_id,
+                        'start' => $registration->start->toDateString(),
+                    ],
+                ]);
             } else {
                 $this->Flash->error(__('The registration could not be saved. Please, try again.'));
             }
         }
 
-        $rooms = $this->Registrations->Rooms->findForOwner('list', $this->getCurrentUser()->get('company_id'));
+        /** @var \App\Model\Table\RoomsTable $RoomsTable */
+        $RoomsTable = TableRegistry::get('Rooms');
+        $rooms = $RoomsTable->findForOwner('list', $this->getCurrentUser()->get('company_id'));
         if (empty($rooms)) {
             $this->Flash->error(__('No rooms defined. Please add a first counter.'));
 
             $this->redirect(['controller' => 'Rooms', 'action' => 'add']);
         }
 
-        $serviceTypes = $this->Registrations->ServiceTypes->findForOwner('list', $this->getCurrentUser()->get('company_id'));
+        /** @var \App\Model\Table\ServiceTypesTable $ServiceTypesTable */
+        $ServiceTypesTable = TableRegistry::get('ServiceTypes');
+        $serviceTypes = $ServiceTypesTable->findForOwner('list', $this->getCurrentUser()->get('company_id'));
 
         $this->set(compact('registration', 'rooms', 'serviceTypes'));
         $this->set('_serialize', ['registration']);
@@ -152,8 +174,7 @@ class RegistrationsController extends AppController
      * Delete method
      *
      * @param string|null $id Registration id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @return \Cake\Http\Response|null Redirects to index.
      */
     public function delete($id = null)
     {
@@ -184,20 +205,24 @@ class RegistrationsController extends AppController
      */
     public function reportAnalytics()
     {
-        $CountersTable = TableRegistry::get('Counters');
-        $counters = $CountersTable->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))->combine('id', 'title')->toArray();
+        $this->loadModel('Counters');
+        $counters = $this->Counters
+            ->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))
+            ->combine('id', 'title')
+            ->toArray();
         $this->set(compact('counters'));
 
         $this->Authorization->skipAuthorization();
 
-        if ($aDate = $this->getRequest()->getQuery('on')) {
+        $aDate = $this->getRequest()->getQuery('on');
+        if (!empty($aDate)) {
             error_reporting(0);
             $aDate = new FrozenDate($aDate);
             $this->viewBuilder()->setClassName('Lil.Pdf');
             $registrations = $this->Authorization->applyScope($this->Registrations->find(), 'index')
                 ->where([
                     'Registrations.counter_id' => $this->getRequest()->getQuery('counter'),
-                    'Registrations.start' => $aDate
+                    'Registrations.start' => $aDate,
                 ])
                 ->contain(['Rooms'])
                 ->order('Rooms.no')
@@ -216,13 +241,18 @@ class RegistrationsController extends AppController
      */
     public function reportServices()
     {
+        /** @var \App\Model\Table\CountersTable $CountersTable */
         $CountersTable = TableRegistry::get('Counters');
-        $counters = $CountersTable->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))->combine('id', 'title')->toArray();
+        $counters = $CountersTable
+            ->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))
+            ->combine('id', 'title')
+            ->toArray();
         $this->set(compact('counters'));
 
         $this->Authorization->skipAuthorization();
 
-        if ($aDate = $this->getRequest()->getQuery('on')) {
+        $aDate = $this->getRequest()->getQuery('on');
+        if (!empty($aDate)) {
             error_reporting(0);
             $aDate = new FrozenDate($aDate);
             $this->viewBuilder()->setClassName('Lil.Pdf');
@@ -231,7 +261,7 @@ class RegistrationsController extends AppController
                     'Registrations.counter_id' => $this->getRequest()->getQuery('counter'),
                     'AND' => [
                         'Registrations.start <=' => $aDate,
-                        'Registrations.end >=' => $aDate
+                        'Registrations.end >=' => $aDate,
                     ],
                 ])
                 ->contain(['Rooms', 'ServiceTypes'])
@@ -251,22 +281,27 @@ class RegistrationsController extends AppController
      */
     public function reportGuests()
     {
+        /** @var \App\Model\Table\CountersTable $CountersTable */
         $CountersTable = TableRegistry::get('Counters');
-        $counters = $CountersTable->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))->combine('id', 'title')->toArray();
+        $counters = $CountersTable
+            ->findForOwner('list', 'V', $this->getCurrentUser()->get('company_id'))
+            ->combine('id', 'title')
+            ->toArray();
         $this->set(compact('counters'));
 
         $this->Authorization->skipAuthorization();
 
-        if ($aDate = $this->getRequest()->getQuery('on')) {
+        $aDate = $this->getRequest()->getQuery('on');
+        if (!empty($aDate)) {
             error_reporting(0);
             $aDate = new FrozenDate($aDate);
             $this->viewBuilder()->setClassName('Lil.Pdf');
-            $registrations =$this->Authorization->applyScope($this->Registrations->find(), 'index')
+            $registrations = $this->Authorization->applyScope($this->Registrations->find(), 'index')
                 ->where([
                     'Registrations.counter_id' => $this->getRequest()->getQuery('counter'),
                     'AND' => [
                         'Registrations.start <=' => $aDate,
-                        'Registrations.end >=' => $aDate
+                        'Registrations.end >=' => $aDate,
                     ],
                 ])
                 ->contain(['Rooms'])

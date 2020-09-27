@@ -84,10 +84,10 @@ class Installer
 
             $dbConnectSuccess = false;
             while (!$dbConnectSuccess) {
-                $dbHost = $io->ask('<info>Enter database host ?</info> [<comment>localhost</comment>]? ', 'localhost');
-                $dbName = $io->ask('<info>Enter database name ?</info> [<comment>ehoteldesk2</comment>]? ', 'ehoteldesk2');
-                $dbUser = $io->ask('<info>Enter database user ?</info> ');
-                $dbPassword = $io->ask('<info>Enter database password ?</info> ');
+                $dbHost = $io->ask('<info>Enter database host?</info> [<comment>localhost</comment>]? ', 'localhost');
+                $dbName = $io->ask('<info>Enter database name?</info> [<comment>ehoteldesk</comment>]? ', 'ehoteldesk');
+                $dbUser = $io->ask('<info>Enter database user?</info> ');
+                $dbPassword = $io->ask('<info>Enter database password?</info> ');
 
                 $dbConnectSuccess = static::checkDbConnection($dbHost, $dbName, $dbUser, $dbPassword, $io);
 

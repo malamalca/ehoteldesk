@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -8,14 +10,26 @@ use Cake\ORM\Entity;
  *
  * @property string $id
  * @property string $company_id
+ * @property string $counter_id
+ * @property string $room_id
+ * @property string $client_id
+ * @property string $no
+ * @property \Cake\I18n\Date $start
+ * @property \Cake\I18n\Date $end
+ * @property int $persons
+ * @property string $name
+ * @property string $address
+ * @property string $country_code
+ * @property string $descript
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
  * @property \App\Model\Entity\Company $company
+ * @property \App\Model\Entity\Counter $counter
+ * @property \App\Model\Entity\Room $room
  */
 class Reservation extends Entity
 {
-
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -27,6 +41,6 @@ class Reservation extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false
+        'id' => false,
     ];
 }

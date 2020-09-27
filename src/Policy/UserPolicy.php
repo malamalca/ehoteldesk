@@ -41,7 +41,8 @@ class UserPolicy
      */
     public function canEdit($authUser, $user)
     {
-        return (($authUser->company_id == $user->company_id) && $authUser->hasRole('admin')) || $authUser->hasRole('root');
+        return ($authUser->company_id == $user->company_id && $authUser->hasRole('admin')) ||
+            $authUser->hasRole('root');
     }
 
     /**
@@ -53,6 +54,7 @@ class UserPolicy
      */
     public function canDelete($authUser, $user)
     {
-        return (($authUser->company_id == $user->company_id) && $authUser->hasRole('admin')) || $authUser->hasRole('root');
+        return ($authUser->company_id == $user->company_id && $authUser->hasRole('admin')) ||
+            $authUser->hasRole('root');
     }
 }

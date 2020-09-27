@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
-use App\Model\Table\IsOwnedByTrait;
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Companies
  * @property \Cake\ORM\Association\HasMany $Rooms
- *
  * @method \App\Model\Entity\RoomType get($primaryKey, $options = [])
  * @method \App\Model\Entity\RoomType newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\RoomType[] newEntities(array $data, array $options = [])
@@ -20,7 +19,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RoomType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RoomType[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\RoomType findOrCreate($search, callable $callback = null)
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RoomTypesTable extends Table
@@ -44,10 +42,10 @@ class RoomTypesTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Companies', [
-            'foreignKey' => 'company_id'
+            'foreignKey' => 'company_id',
         ]);
         $this->hasMany('Rooms', [
-            'foreignKey' => 'room_type_id'
+            'foreignKey' => 'room_type_id',
         ]);
     }
 
@@ -90,7 +88,7 @@ class RoomTypesTable extends Table
     /**
      * Returns list of rooms for specified owner
      *
-     * @param uuid $findType Company Id.
+     * @param \App\Model\Table\uuid $findType Company Id.
      * @param bool $q Show only active accounts.
      * @return mixed
      */

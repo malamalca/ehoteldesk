@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Lib;
 
-use \Exception;
+use Exception;
 
 /**
  * FiscalSoap.php
@@ -45,23 +47,33 @@ use \Exception;
 
 class FiscalSoap
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     private $ECHO_TEMPLATE = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $cert = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $p12 = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $password = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $url = 'https://blagajne-test.fu.gov.si:9002/v1/cash_registers';
 
     /**
-     * @param string $options
+     * @param string $options Options array
      */
     public function __construct($options = [])
     {
@@ -76,6 +88,7 @@ class FiscalSoap
 
     /**
      * @param string $url Soap service url
+     * @return \App\Lib\FiscalSoap
      */
     public function setUrl($url)
     {
@@ -86,6 +99,7 @@ class FiscalSoap
 
     /**
      * @param string $fileName Server's public key.
+     * @return \App\Lib\FiscalSoap
      */
     public function setCert($fileName)
     {
@@ -96,6 +110,7 @@ class FiscalSoap
 
     /**
      * @param string $fileName Clients key in .p12|.pfx store.
+     * @return \App\Lib\FiscalSoap
      */
     public function setP12($fileName)
     {
@@ -106,6 +121,7 @@ class FiscalSoap
 
     /**
      * @param string $password Client's private key password.
+     * @return \App\Lib\FiscalSoap
      */
     public function setPassword($password)
     {
@@ -116,18 +132,23 @@ class FiscalSoap
 
     /**
      * @param string $message Echo message
+     * @return bool|string
      */
     public function sendEcho($message)
     {
-        if ($response = $this->doRequest('echo', sprintf($this->ECHO_TEMPLATE, $message))) {
+        $response = $this->doRequest('echo', sprintf($this->ECHO_TEMPLATE, $message));
+        if (!empty($response)) {
             if ($this->hasError($response) === false) {
                 return $this->elementValue($response, 'EchoResponse');
             }
         }
+
+        return false;
     }
 
     /**
      * @param string $xml Signed premise xml
+     * @return string
      */
     public function sendPremiseRaw($xml)
     {
@@ -136,16 +157,21 @@ class FiscalSoap
 
     /**
      * @param string $xml Signed premise xml
+     * @return bool|string
      */
     public function sendPremise($xml)
     {
-        if ($response = $this->sendPremiseRaw($xml)) {
+        $response = $this->sendPremiseRaw($xml);
+        if (!empty($response)) {
             return $this->hasError($response) === false;
         }
+
+        return false;
     }
 
     /**
      * @param string $xml Signed invoice xml
+     * @return string
      */
     public function sendInvoiceRaw($xml)
     {
@@ -154,18 +180,23 @@ class FiscalSoap
 
     /**
      * @param string $xml Signed invoice xml
+     * @return bool|string
      */
     public function sendInvoice($xml)
     {
-        if ($response = $this->sendInvoiceRaw($xml)) {
+        $response = $this->sendInvoiceRaw($xml);
+        if (!empty($response)) {
             if ($this->hasError($response) === false) {
                 return $this->elementValue($response, 'UniqueInvoiceID');
             }
         }
+
+        return false;
     }
 
     /**
      * @param string $xml Signed invoice xml
+     * @return bool
      */
     public function hasError($xml)
     {
@@ -175,6 +206,7 @@ class FiscalSoap
     /**
      * @param string $xml Response XML
      * @param string $elementName XML Element Name
+     * @return bool|string
      */
     public function elementValue($xml, $elementName)
     {
@@ -191,25 +223,25 @@ class FiscalSoap
     /**
      * @param string $action Curl action.
      * @param string $xml XML body.
+     * @return bool|string Returns response on success or false on failure.
      */
     private function doRequest($action, $xml)
     {
-        if (!$privateKey = FiscalUtils::p12ToPem($this->p12, $this->password)) {
+        $privateKey = FiscalUtils::p12ToPem($this->p12, $this->password);
+        if (empty($privateKey)) {
             throw new Exception('ERROR: Cannot parse P12');
-
-            return false;
         }
-        if (!$ca = FiscalUtils::cerToPem($this->cert, $this->password)) {
-            throw new Exception('ERROR: Cannot parse CA Info');
 
-            return false;
+        $ca = FiscalUtils::cerToPem($this->cert, $this->password);
+        if (empty($ca)) {
+            throw new Exception('ERROR: Cannot parse CA Info');
         }
 
         $header = [
-                "Content-Type: text/xml; charset=utf-8",
-                "Cache-Control: no-cache",
-                "Pragma: no-cache",
-                "SOAPAction: /" . $action
+            'Content-Type: text/xml; charset=utf-8',
+            'Cache-Control: no-cache',
+            'Pragma: no-cache',
+            'SOAPAction: /' . $action,
         ];
         $conn = curl_init();
         $settings = [
@@ -221,17 +253,18 @@ class FiscalSoap
             CURLOPT_POST => 1,
             CURLOPT_HTTPHEADER => $header,
             CURLOPT_POSTFIELDS => $xml,
-            CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1,
+            CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2,
             CURLOPT_SSL_VERIFYHOST => 2,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSLCERT => $privateKey,
             CURLOPT_SSLCERTPASSWD => $this->password,
-            CURLOPT_CAINFO => $ca
+            CURLOPT_CAINFO => $ca,
         ];
         curl_setopt_array($conn, $settings);
 
         $ret = false;
-        if ($rawResponse = curl_exec($conn)) {
+        $rawResponse = curl_exec($conn);
+        if (!empty($rawResponse)) {
             $ret = $rawResponse;
         } else {
             throw new Exception('CODECURL: ' . curl_error($conn));

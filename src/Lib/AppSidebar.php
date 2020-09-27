@@ -1,17 +1,17 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Lib;
 
 use Cake\ORM\TableRegistry;
 
 class AppSidebar
 {
-
     /**
-     * setAdminSidebar method
-     *
      * Add admin sidebar elements.
      *
      * @param mixed $event Event object.
+     * @param \ArrayObject $sidebar Sidebar object.
      * @access public
      * @return array
      */
@@ -30,7 +30,8 @@ class AppSidebar
         $sidebar['documents']['visible'] = false;
         $sidebar['documents']['active'] = false;
 
-        $sidebar['welcome']['active'] = !empty($currentUser) && (empty($plugin) || in_array($plugin, ['LilCrm', 'LilInvoices', 'LilTaxRegisters']));
+        $sidebar['welcome']['active'] = !empty($currentUser) &&
+            (empty($plugin) || in_array($plugin, ['LilCrm', 'LilInvoices', 'LilTaxRegisters']));
         $sidebar['welcome']['items'] = [
             'reservations' => [
                 'visible' => $currentUser,
@@ -38,9 +39,14 @@ class AppSidebar
                 'url' => ['plugin' => false, 'controller' => 'Reservations', 'action' => 'index'],
                 'expandable' => false,
                 'params' => [],
-                'active' => self::testCA($controller, $action, 'Reservations', ['index', 'edit', 'view', 'createInvoice', 'previewInvoice']),
+                'active' => self::testCA(
+                    $controller,
+                    $action,
+                    'Reservations',
+                    ['index', 'edit', 'view', 'createInvoice', 'previewInvoice']
+                ),
                 'expand' => false,
-                'submenu' => []
+                'submenu' => [],
             ],
             'registrations' => [
                 'visible' => $currentUser,
@@ -50,7 +56,7 @@ class AppSidebar
                 'params' => [],
                 'active' => self::testCA($controller, $action, 'Registrations', ['index', 'edit', 'view']),
                 'expand' => false,
-                'submenu' => []
+                'submenu' => [],
             ],
             'contacts' => [
                 'visible' => $currentUser,
@@ -60,7 +66,7 @@ class AppSidebar
                 'params' => [],
                 'active' => self::testCA($controller, $action, 'Contacts', ['index', 'edit', 'view']),
                 'expand' => false,
-                'submenu' => []
+                'submenu' => [],
             ],
             'invoices' => [
                 'visible' => $currentUser,
@@ -72,7 +78,7 @@ class AppSidebar
                 'active' => ($plugin == 'LilInvoices' && (
                     self::testCA($controller, $action, 'Invoices', ['index', 'edit', 'view'])
                 )),
-                'submenu' => []
+                'submenu' => [],
             ],
             'companies' => [
                 'visible' => $currentUser && $currentUser->hasRole('root'),
@@ -82,7 +88,7 @@ class AppSidebar
                 'params' => [],
                 'active' => self::testCA($controller, $action, 'Companies', ['index', 'edit', 'view']),
                 'expand' => false,
-                'submenu' => []
+                'submenu' => [],
             ],
             'reports' => [
                 'visible' => $currentUser,
@@ -92,7 +98,12 @@ class AppSidebar
                 'params' => [],
                 'active' => false,
                 'active' => self::testCA($controller, $action, 'Reservations', ['reportAnalytics']) ||
-                    self::testCA($controller, $action, 'Registrations', ['reportAnalytics', 'reportServices', 'reportGuests']) ||
+                    self::testCA(
+                        $controller,
+                        $action,
+                        'Registrations',
+                        ['reportAnalytics', 'reportServices', 'reportGuests']
+                    ) ||
                     self::testCA($controller, $action, 'Rooms', ['reportVacancies', 'reportBooked']),
                 'submenu' => [
                     'reservations_analytics' => [
@@ -101,7 +112,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Reservations',
-                            'action' => 'reportAnalytics'
+                            'action' => 'reportAnalytics',
                         ],
                         'active' => self::testCA($controller, $action, 'Reservations', ['reportAnalytics']),
                     ],
@@ -111,7 +122,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Registrations',
-                            'action' => 'report_analytics'
+                            'action' => 'report_analytics',
                         ],
                         'active' => self::testCA($controller, $action, 'Registrations', ['reportAnalytics']),
                     ],
@@ -121,7 +132,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Registrations',
-                            'action' => 'report_services'
+                            'action' => 'report_services',
                         ],
                         'active' => self::testCA($controller, $action, 'Registrations', ['reportServices']),
                     ],
@@ -131,7 +142,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Registrations',
-                            'action' => 'report_guests'
+                            'action' => 'report_guests',
                         ],
                         'active' => self::testCA($controller, $action, 'Registrations', ['reportGuests']),
                     ],
@@ -141,7 +152,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Rooms',
-                            'action' => 'report_vacancies'
+                            'action' => 'report_vacancies',
                         ],
                         'active' => self::testCA($controller, $action, 'Rooms', ['reportVacancies']),
                     ],
@@ -151,11 +162,11 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Rooms',
-                            'action' => 'report_booked'
+                            'action' => 'report_booked',
                         ],
                         'active' => self::testCA($controller, $action, 'Rooms', ['reportBooked']),
                     ],
-                ]
+                ],
             ],
             'eturizem' => [
                 'visible' => $currentUser && $currentUser->hasRole('admin'),
@@ -171,7 +182,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Eturizem',
-                            'action' => 'sendGuestBook'
+                            'action' => 'sendGuestBook',
                         ],
                         'active' => self::testCA($controller, $action, 'Eturizem', ['sendGuestBook']),
                     ],
@@ -181,11 +192,11 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Eturizem',
-                            'action' => 'sendMonthlyReport'
+                            'action' => 'sendMonthlyReport',
                         ],
                         'active' => self::testCA($controller, $action, 'Eturizem', ['sendMonthlyReport']),
                     ],
-                ]
+                ],
             ],
             'lookups' => [
                 'visible' => $currentUser && $currentUser->hasRole('admin'),
@@ -212,7 +223,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Counters',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
                         'active' => self::testCA($controller, $action, 'Counters', ['index', 'edit']),
                     ],
@@ -222,7 +233,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'Rooms',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
                         'active' => self::testCA($controller, $action, 'Rooms', ['index', 'edit']),
                     ],
@@ -232,7 +243,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'RoomTypes',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
                         'active' => self::testCA($controller, $action, 'RoomTypes', ['index', 'edit']),
                     ],
@@ -242,7 +253,7 @@ class AppSidebar
                         'url' => [
                             'plugin' => false,
                             'controller' => 'ServiceTypes',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
                         'active' => self::testCA($controller, $action, 'ServiceTypes', ['index', 'edit']),
                     ],
@@ -252,9 +263,10 @@ class AppSidebar
                         'url' => [
                             'plugin' => 'LilInvoices',
                             'controller' => 'InvoicesCounters',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
-                        'active' => ($plugin == 'LilInvoices') && self::testCA($controller, $action, 'InvoicesCounters', ['index', 'edit']),
+                        'active' => ($plugin == 'LilInvoices') &&
+                            self::testCA($controller, $action, 'InvoicesCounters', ['index', 'edit']),
                     ],
                     'invoices_items' => [
                         'visible' => true,
@@ -262,9 +274,10 @@ class AppSidebar
                         'url' => [
                             'plugin' => 'LilInvoices',
                             'controller' => 'Items',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
-                        'active' => ($plugin == 'LilInvoices') && self::testCA($controller, $action, 'Items', ['index', 'edit']),
+                        'active' => ($plugin == 'LilInvoices') &&
+                            self::testCA($controller, $action, 'Items', ['index', 'edit']),
                     ],
                     'invoices_vats' => [
                         'visible' => true,
@@ -272,9 +285,10 @@ class AppSidebar
                         'url' => [
                             'plugin' => 'LilInvoices',
                             'controller' => 'Vats',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
-                        'active' => ($plugin == 'LilInvoices') && self::testCA($controller, $action, 'Vats', ['index', 'edit']),
+                        'active' => ($plugin == 'LilInvoices') &&
+                            self::testCA($controller, $action, 'Vats', ['index', 'edit']),
                     ],
                     'invoices_templates' => [
                         'visible' => true,
@@ -282,22 +296,24 @@ class AppSidebar
                         'url' => [
                             'plugin' => 'LilInvoices',
                             'controller' => 'InvoicesTemplates',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
-                        'active' => ($plugin == 'LilInvoices') && self::testCA($controller, $action, 'InvoicesTemplates', ['index', 'edit']),
+                        'active' => ($plugin == 'LilInvoices') &&
+                            self::testCA($controller, $action, 'InvoicesTemplates', ['index', 'edit']),
                     ],
                     'business_premisses' => [
                         'visible' => true,
                         'title' => __('Business Premises'),
                         'url' => [
-                            //'plugin' => 'LilTaxRegisters',
+                            'plugin' => 'LilTaxRegisters',
                             'controller' => 'BusinessPremises',
-                            'action' => 'index'
+                            'action' => 'index',
                         ],
-                        'active' => ($plugin == 'LilTaxRegisters') && self::testCA($controller, $action, 'BusinessPremises', ['index', 'edit', 'view']),
+                        'active' => ($plugin == 'LilTaxRegisters') &&
+                            self::testCA($controller, $action, 'BusinessPremises', ['index', 'edit', 'view']),
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
 
         $invoicesCounters = TableRegistry::get('LilInvoices.InvoicesCounters')
@@ -316,7 +332,7 @@ class AppSidebar
                     'plugin' => 'LilInvoices',
                     'controller' => 'Invoices',
                     'action' => 'index',
-                    '?' => ['counter' => $counter_id]
+                    '?' => ['counter' => $counter_id],
                 ],
                 'active' => ($plugin == 'LilInvoices' &&
                     (self::testCA($controller, $action, 'Invoices', ['index', 'edit', 'view'])) &&
@@ -339,6 +355,7 @@ class AppSidebar
      */
     public static function testCA($controller, $action, $validControllers, $validActions = [])
     {
-        return in_array($controller, (array)$validControllers) && (($action === '*') || in_array($action, (array)$validActions));
+        return in_array($controller, (array)$validControllers) &&
+            (($action === '*') || in_array($action, (array)$validActions));
     }
 }

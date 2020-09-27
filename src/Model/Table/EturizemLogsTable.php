@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -16,12 +16,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\EturizemLog patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\EturizemLog[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\EturizemLog findOrCreate($search, callable $callback = null, $options = [])
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class EturizemLogsTable extends Table
 {
-
     /**
      * Initialize method
      *

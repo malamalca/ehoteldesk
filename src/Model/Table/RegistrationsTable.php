@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
-use App\Model\Table\IsOwnedByTrait;
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
@@ -13,15 +13,14 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Companies
  * @property \Cake\ORM\Association\BelongsTo $Clients
- *
  * @method \App\Model\Entity\Registration get($primaryKey, $options = [])
  * @method \App\Model\Entity\Registration newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Registration newEmptyEntity(array $options = [])
  * @method \App\Model\Entity\Registration[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\Registration|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\Registration patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Registration[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Registration findOrCreate($search, callable $callback = null)
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RegistrationsTable extends Table
@@ -44,18 +43,18 @@ class RegistrationsTable extends Table
 
         $this->belongsTo('Counters', [
             'foreignKey' => 'counter_id',
-            'joinType' => 'INNER'
+            'joinType' => 'INNER',
         ]);
 
         $this->belongsTo('Clients', [
             'className' => 'LilCrm.Contacts',
-            'foreignKey' => 'client_id'
+            'foreignKey' => 'client_id',
         ]);
         $this->belongsTo('Rooms', [
-            'foreignKey' => 'room_id'
+            'foreignKey' => 'room_id',
         ]);
         $this->belongsTo('ServiceTypes', [
-            'foreignKey' => 'service_id'
+            'foreignKey' => 'service_id',
         ]);
     }
 
@@ -122,8 +121,8 @@ class RegistrationsTable extends Table
             'room_id' => $entity->room_id,
             'AND' => [
                 'start <=' => $entity->end->toMutable()->addDays(-1),
-                'end >=' => $entity->start->toMutable()->addDays(1)
-            ]
+                'end >=' => $entity->start->toMutable()->addDays(1),
+            ],
         ];
         if ($entity->isNew() === false && $skipIdCheck === false) {
             $conditions['NOT']['id'] = $entity->id;
@@ -135,7 +134,7 @@ class RegistrationsTable extends Table
     /**
      * Returns list of registrations for specified owner
      *
-     * @param uuid $findType Company Id.
+     * @param \App\Model\Table\uuid $findType Company Id.
      * @param bool $ownerId Show only active accounts.
      * @return mixed
      */
@@ -155,8 +154,9 @@ class RegistrationsTable extends Table
      * Returns list of reservations for specified filter
      *
      * @param string $findType 'all', 'list',..
-     * @param array $filter Filter data
-     * @return array
+     * @param array \Cake\ORM\Query $q Query object
+     * @param array $filter Filter array
+     * @return array|\App\Model\Table\Collection
      */
     public function filter($findType, $q, &$filter)
     {
@@ -173,7 +173,7 @@ class RegistrationsTable extends Table
             }
             $conditions['AND'] = [
                 'Registrations.start <= ' => $filter['end'],
-                'Registrations.end >= ' => $filter['start']
+                'Registrations.end >= ' => $filter['start'],
             ];
         }
 
@@ -185,8 +185,9 @@ class RegistrationsTable extends Table
         }
 
         if (empty($filter['counter'])) {
-            if (!$defaultCounter = $this->Counters->findDefaultCounter('V', $filter['owner'])) {
-                return false;
+            $defaultCounter = $this->Counters->findDefaultCounter('V', $filter['owner']);
+            if (empty($defaultCounter)) {
+                return [];
             }
             $filter['counter'] = $defaultCounter->id;
         }
@@ -234,7 +235,7 @@ class RegistrationsTable extends Table
     /**
      * Mark entities as sent
      *
-     * @param Collection $registrations Registrations list.
+     * @param \App\Model\Table\Collection|array $registrations Registrations list.
      * @param array $response Remote server response.
      * @return void
      */

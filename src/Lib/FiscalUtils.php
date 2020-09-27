@@ -1,7 +1,7 @@
 <?php
-namespace App\Lib;
+declare(strict_types=1);
 
-use Exception;
+namespace App\Lib;
 
 /**
  * FiscalUtils.php
@@ -46,13 +46,13 @@ use Exception;
 class FiscalUtils
 {
     /**
-     * @param string $p12 .P12 store as string.
+     * @param string $p12 .P12 store as fuile.
      * @param string|null $password Clients private key password.
      * @return string PEM filename in temp folder.
      */
     public static function p12ToPem($p12, $password = null)
     {
-        return self::p12StringToPem($p12, $password);
+        return self::p12StringToPem(file_get_contents($p12), $password);
     }
 
     /**
@@ -77,11 +77,13 @@ class FiscalUtils
 
     /**
      * @param string $cer Path to clients .cer file
+     * @return bool|string
      */
     public static function cerToPem($cer)
     {
         $ret = false;
-        if ($caContents = file_get_contents($cer)) {
+        $caContents = file_get_contents($cer);
+        if (!empty($caContents)) {
             $caPemContent =
                 '-----BEGIN CERTIFICATE-----' . PHP_EOL .
                 chunk_split(base64_encode($caContents), 64, PHP_EOL) .

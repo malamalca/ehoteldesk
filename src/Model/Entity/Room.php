@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -9,19 +11,21 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property string $company_id
  * @property string $room_type_id
+ * @property string $vat_id
  * @property string $no
  * @property string $title
  * @property int $beds
+ * @property float $priceperday
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
  * @property \App\Model\Entity\Company $company
  * @property \App\Model\Entity\RoomType $room_type
+ * @property \LilInvoices\Model\Entity\Vat $vat
  * @property \App\Model\Entity\Reservation[] $reservations
  */
 class Room extends Entity
 {
-
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -33,9 +37,12 @@ class Room extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false
+        'id' => false,
     ];
 
+    /**
+     * @return string
+     */
     public function toString()
     {
         return $this->no . ' - ' . $this->title;

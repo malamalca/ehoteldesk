@@ -1,16 +1,18 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Lib;
 
-use App\Lib\FiscalUtils;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
-use DomDocument;
-use Exception;
+use DOMDocument;
 
 class ETurizem
 {
-    const ENVELOPE = '<' . '?xml version="1.0" encoding="UTF-8"?>' .
-        '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://www.ajpes.si/eturizem/">' .
+    public const ENVELOPE = '<' . '?xml version="1.0" encoding="UTF-8"?>' .
+        '<SOAP-ENV:Envelope ' .
+            'xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" ' .
+            'xmlns:ns1="http://www.ajpes.si/eturizem/">' .
         '<SOAP-ENV:Body>' .
         '<ns1:oddajPorocilo>' .
         '<ns1:uName>%1$s</ns1:uName>' .
@@ -21,13 +23,12 @@ class ETurizem
         '</SOAP-ENV:Body>' .
         '</SOAP-ENV:Envelope>';
 
-    const SUCCESS_GB = 1;
+    public const SUCCESS_GB = 1;
 
-    const ERROR_GB_SCHEMA = -10;
-    const ERROR_GB_SOAP = -20;
+    public const ERROR_GB_SCHEMA = -10;
+    public const ERROR_GB_SOAP = -20;
 
     private $lastErrorMessage = '';
-    private $xml = '';
 
     // apiTest:Test123!
 
@@ -37,11 +38,12 @@ class ETurizem
      * @param string $uPwd ETruizem password.
      * @param string $p12 P12 storage with private key.
      * @param string $password Password for private key.
-     * @return bool
+     * @return bool|array
      */
     public function send($xml, $uName, $uPwd, $p12, $password)
     {
-        if (!$privateKey = FiscalUtils::p12StringToPem($p12, $password)) {
+        $privateKey = FiscalUtils::p12StringToPem($p12, $password);
+        if (empty($privateKey)) {
             $this->lastErrorMessage = 'Cannot parse P12';
 
             return false;
@@ -52,10 +54,10 @@ class ETurizem
         $envelopedXml = sprintf(self::ENVELOPE, $uName, $uPwd, $xml);
 
         $header = [
-                "Content-Type: text/xml; charset=utf-8",
-                "Cache-Control: no-cache",
-                "Pragma: no-cache",
-                "SOAPAction: http://www.ajpes.si/eturizem/oddajPorocilo"
+                'Content-Type: text/xml; charset=utf-8',
+                'Cache-Control: no-cache',
+                'Pragma: no-cache',
+                'SOAPAction: http://www.ajpes.si/eturizem/oddajPorocilo',
         ];
 
         $conn = curl_init();
@@ -79,26 +81,30 @@ class ETurizem
         curl_setopt_array($conn, $settings);
 
         $ret = false;
-        if ($rawResponse = curl_exec($conn)) {
+        $rawResponse = curl_exec($conn);
+        if (!empty($rawResponse)) {
             $httpStatus = curl_getinfo($conn, CURLINFO_HTTP_CODE);
             if ($httpStatus == 200) {
                 $responseDoc = new DOMDocument();
                 if ($responseDoc->loadXML($rawResponse)) {
                     $responseNode = $responseDoc->getElementsByTagName('oddajPorociloResult')->item(0);
-                    if ($dataNodeText = $responseNode->nodeValue) {
+                    $dataNodeText = $responseNode->nodeValue;
+                    if (!empty($dataNodeText)) {
                         $dataDoc = new DOMDocument();
                         if ($dataDoc->loadXML(html_entity_decode($dataNodeText))) {
                             $failures = $dataDoc->documentElement->getAttribute('failure');
 
                             if ($failures > 0) {
                                 foreach ($dataDoc->documentElement->childNodes as $node) {
-                                    $message .= __('Line {0}: {1}', $node->getAttribute('rowPackageId'), $node->getAttribute('msgTxt')) . PHP_EOL;
+                                    $rowPackageId = $node->getAttribute('rowPackageId');
+                                    $msgTxt = $node->getAttribute('msgTxt');
+                                    $message .= __('Line {0}: {1}', $rowPackageId, $msgTxt) . PHP_EOL;
                                 }
                             } else {
                                 $ret = [
                                     'guid' => $dataDoc->documentElement->getAttribute('packageGuid'),
                                     'time' => $dataDoc->documentElement->getAttribute('time'),
-                                    'raw' => $rawResponse
+                                    'raw' => $rawResponse,
                                 ];
                             }
                         }
@@ -154,7 +160,11 @@ class ETurizem
     /**
      * Logs ETurizem to table.
      *
-     * @return uuid
+     * @param string $companyId Company id
+     * @param int $status Log status
+     * @param string $xml XML data
+     * @param string $message Message
+     * @return \App\Model\Entity\EturizemLog
      */
     public function log($companyId, $status, $xml, $message)
     {
@@ -211,6 +221,7 @@ class ETurizem
 
         return true;
     }
+
     /**
      * @param \libXMLError $error Error object.
      * @return string Formatted error message for single error object.
@@ -220,13 +231,13 @@ class ETurizem
         $return = '';
         switch ($error->level) {
             case LIBXML_ERR_WARNING:
-                $return .= __("Warning {0}: ", $error->code);
+                $return .= __('Warning {0}: ', $error->code);
                 break;
             case LIBXML_ERR_ERROR:
-                $return .= __("Error {0}: ", $error->code);
+                $return .= __('Error {0}: ', $error->code);
                 break;
             case LIBXML_ERR_FATAL:
-                $return .= __("Fatal Error {0}: ", $error->code);
+                $return .= __('Fatal Error {0}: ', $error->code);
                 break;
         }
         $return .= trim($error->message);

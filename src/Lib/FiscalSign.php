@@ -1,9 +1,10 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Lib;
 
-use \Exception;
-use \DomDocument;
-use \DomXPath;
+use DOMDocument;
+use DOMXPath;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
@@ -49,20 +50,30 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
 
 class FiscalSign
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     private $p12 = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $password = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $idPropertyName = 'Id';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $idPropertyValue = 'data';
 
-    /** @var string */
-    private $lastError = '';
+    /**
+     * @var string
+     */
+    public $lastError = '';
 
     /**
      * @param array $options Config options
@@ -73,6 +84,7 @@ class FiscalSign
 
     /**
      * @param string $fileName Clients key in .p12|.pfx store.
+     * @return \App\Lib\FiscalSign
      */
     public function setP12File($fileName)
     {
@@ -83,6 +95,7 @@ class FiscalSign
 
     /**
      * @param string $p12 Clients key in .p12|.pfx store.
+     * @return \App\Lib\FiscalSign
      */
     public function setP12($p12)
     {
@@ -93,6 +106,7 @@ class FiscalSign
 
     /**
      * @param string $password Client's private key password.
+     * @return \App\Lib\FiscalSign
      */
     public function setPassword($password)
     {
@@ -104,6 +118,7 @@ class FiscalSign
     /**
      * @param string $xml Echo message
      * @param string $signingNode Node to sign eg fu:InvoiceRequest
+     * @return bool|string
      */
     public function sign($xml, $signingNode)
     {
@@ -113,7 +128,8 @@ class FiscalSign
         $doc->loadXML($xml);
 
         $xpath = new DOMXPath($doc);
-        if ($nodeset = $xpath->query("//" . $signingNode)->item(0)) {
+        $nodeset = $xpath->query('//' . $signingNode)->item(0);
+        if (!empty($nodeset)) {
             $objXMLSecDSig = new XMLSecurityDSig('');
             $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::C14N);
             $objXMLSecDSig->addReference(
@@ -146,13 +162,16 @@ class FiscalSign
 
     /**
      * @param string $data Zoi string to be signed
+     * @return bool|string
      */
     public function zoi($data)
     {
         $ret = false;
 
-        if ($tmpPemFile = FiscalUtils::p12ToPem($this->p12, $this->password)) {
-            if ($key = openssl_pkey_get_private('file://' . realpath($tmpPemFile), $this->password)) {
+        $tmpPemFile = FiscalUtils::p12ToPem($this->p12, $this->password);
+        if (!empty($tmpPemFile)) {
+            $key = openssl_pkey_get_private('file://' . realpath($tmpPemFile), $this->password);
+            if (!empty($key)) {
                 openssl_sign($data, $signature, $key, OPENSSL_ALGO_SHA256);
                 openssl_free_key($key);
                 $ret = md5($signature);

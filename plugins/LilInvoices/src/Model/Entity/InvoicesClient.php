@@ -54,32 +54,25 @@ class InvoicesClient extends Entity
         $this->contact_id = $user->company_id;
 
         if (empty($user->company)) {
-            /** @var \LilCrm\Model\Entity\Contact $company */
-            $company = TableRegistry::getTableLocator()->get('LilCrm.Contacts')->get($user->company_id, [
-                'contain' => ['PrimaryAddresses', 'PrimaryAccounts'],
-            ]);
+            /** @var \App\Model\Entity\Companies $company */
+            $company = TableRegistry::getTableLocator()->get('Companies')->get($user->company_id);
         } else {
             /** @var \LilCrm\Model\Entity\Contact $company */
             $company = $user->company;
         }
-        $this->title = $company->title;
+        $this->title = $company->name;
         $this->mat_no = $company->mat_no;
         $this->tax_no = $company->tax_no;
 
-        if (isset($company->primary_address)) {
-            $this->street = $company->primary_address->street;
-            $this->city = $company->primary_address->city;
-            $this->zip = $company->primary_address->zip;
-            $this->country = $company->primary_address->country;
-            $this->country_code = $company->primary_address->country_code;
-        }
+        $this->street = $company->street;
+        $this->city = $company->city;
+        $this->zip = $company->zip;
+        $this->country = $company->country;
+        $this->country_code = $company->country_code;
 
-        if (isset($company->primary_account)) {
-            $this->iban = $company->primary_account->iban;
-            $this->bic = $company->primary_account->bic;
-            $this->bank = $company->primary_account->bank;
-            // todo: convert bic to bank name
-        }
+        $this->iban = $company->iban;
+        $this->bic = $company->bic;
+        $this->bank = $company->bank;
 
         $this->person = $user->name;
     }

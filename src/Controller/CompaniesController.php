@@ -1,14 +1,12 @@
 <?php
-namespace App\Controller;
+declare(strict_types=1);
 
-use App\Controller\AppController;
-use Cake\Event\EventInterface;
+namespace App\Controller;
 
 /**
  * Companies Controller
  *
  * @property \App\Model\Table\CompaniesTable $Companies
- *
  * @method \App\Model\Entity\Company[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class CompaniesController extends AppController
@@ -16,8 +14,7 @@ class CompaniesController extends AppController
     /**
      * BeforeFilter method.
      *
-     * @param Cake\Event\EventInterface $event Cake Event object.
-     *
+     * @param \App\Controller\Cake\Event\EventInterface $event Cake Event object.
      * @return void
      */
     /*public function beforeFilter(Event $event)
@@ -76,7 +73,7 @@ class CompaniesController extends AppController
     public function view($id = null)
     {
         $company = $this->Companies->get($id, [
-            'contain' => ['Users', 'Counters']
+            'contain' => ['Users', 'Counters'],
         ]);
 
         $this->Authorization->authorize($company);
@@ -87,7 +84,7 @@ class CompaniesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     * @return void Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -99,7 +96,6 @@ class CompaniesController extends AppController
      *
      * @param string|null $id Company id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
@@ -116,7 +112,8 @@ class CompaniesController extends AppController
             if ($this->Companies->save($company)) {
                 $this->Flash->success(__('The company has been saved.'));
 
-                if ($redirect = $this->getRequest()->getData('referer')) {
+                $redirect = $this->getRequest()->getData('referer');
+                if (!empty($redirect)) {
                     return $this->redirect($redirect);
                 }
 
@@ -125,6 +122,8 @@ class CompaniesController extends AppController
             $this->Flash->error(__('The company could not be saved. Please, try again.'));
         }
         $this->set(compact('company'));
+
+        return null;
     }
 
     /**

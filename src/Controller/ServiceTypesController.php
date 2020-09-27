@@ -1,7 +1,7 @@
 <?php
-namespace App\Controller;
+declare(strict_types=1);
 
-use App\Controller\AppController;
+namespace App\Controller;
 
 /**
  * ServiceTypes Controller
@@ -10,7 +10,6 @@ use App\Controller\AppController;
  */
 class ServiceTypesController extends AppController
 {
-
     /**
      * isAuthorized method.
      *
@@ -74,7 +73,6 @@ class ServiceTypesController extends AppController
         }
 
         $this->Authorization->authorize($serviceType);
-
 
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
             $serviceType = $this->ServiceTypes->patchEntity($serviceType, $this->getRequest()->getData());

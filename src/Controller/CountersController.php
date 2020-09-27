@@ -1,40 +1,17 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
 /**
  * Counters Controller
  *
  * @property \App\Model\Table\CountersTable $Counters
- *
- * @method \App\Model\Entity\Counter[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class CountersController extends AppController
 {
-
-    /**
-     * isAuthorized method.
-     *
-     * @param array $user User
-     * @return bool
-     */
-    /*public function isAuthorized($user)
-    {
-        switch ($this->getRequest()->getParam('action')) {
-            case 'index':
-                return true;
-            case 'add':
-                return $this->userLevel('admin');
-            case 'edit':
-            case 'delete':
-                return !empty($this->getRequest()->getParam('pass.0')) && $this->userLevel('admin') &&
-                    $this->Counters->isOwnedBy($this->getRequest()->getParam('pass.0'), $this->getCurrentUser()->get('company_id'));
-            default:
-                return false;
-        }
-    }*/
     /**
      * Index method
      *
@@ -65,7 +42,6 @@ class CountersController extends AppController
      *
      * @param string|null $id Counter id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
@@ -96,6 +72,8 @@ class CountersController extends AppController
             ->toArray();
 
         $this->set(compact('counter', 'invoicesCounters'));
+
+        return null;
     }
 
     /**

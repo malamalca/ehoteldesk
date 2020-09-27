@@ -45,7 +45,7 @@ class AppEvents implements EventListenerInterface
      *
      * @param \Cake\Event\Event $event Event.
      * @param \ArrayObject $sidebar Sidebar.
-     * @return \ArrayObject
+     * @return void
      */
     public function modifySidebar($event, $sidebar)
     {

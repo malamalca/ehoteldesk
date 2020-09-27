@@ -1,9 +1,8 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
-use App\Model\Table\IsOwnedByTrait;
-
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -14,7 +13,6 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Companies
  * @property \Cake\ORM\Association\BelongsTo $RoomTypes
  * @property \Cake\ORM\Association\HasMany $Reservations
- *
  * @method \App\Model\Entity\Room get($primaryKey, $options = [])
  * @method \App\Model\Entity\Room newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Room[] newEntities(array $data, array $options = [])
@@ -22,7 +20,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Room patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Room[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Room findOrCreate($search, callable $callback = null)
- *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RoomsTable extends Table
@@ -46,20 +43,20 @@ class RoomsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Companies', [
-            'foreignKey' => 'company_id'
+            'foreignKey' => 'company_id',
         ]);
         $this->belongsTo('RoomTypes', [
-            'foreignKey' => 'room_type_id'
+            'foreignKey' => 'room_type_id',
         ]);
         $this->hasMany('Reservations', [
-            'foreignKey' => 'room_id'
+            'foreignKey' => 'room_id',
         ]);
         $this->hasMany('Registrations', [
-            'foreignKey' => 'room_id'
+            'foreignKey' => 'room_id',
         ]);
         $this->belongsTo('Vats', [
             'className' => 'LilInvoices.Vats',
-            'foreignKey' => 'vat_id'
+            'foreignKey' => 'vat_id',
         ]);
     }
 
@@ -111,7 +108,7 @@ class RoomsTable extends Table
     /**
      * Returns list of rooms for specified owner
      *
-     * @param uuid $findType Company Id.
+     * @param string $findType Company Id.
      * @param bool $ownerId Show only active accounts.
      * @return mixed
      */

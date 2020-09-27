@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fu="http://www.fu.gov.si/" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+<soapenv:Body>
+<fu:BusinessPremiseRequest Id="data">
+<fu:Header>
+<fu:MessageID>4e64a93a-40fa-4c02-afb1-488534b85e4c</fu:MessageID>
+<fu:DateTime>2015-07-17T09:30:47Z</fu:DateTime>
+</fu:Header>
+<fu:BusinessPremise>
+<fu:TaxNumber>10039953</fu:TaxNumber>
+<fu:BusinessPremiseID>AABB</fu:BusinessPremiseID>
+<fu:BPIdentifier>
+<fu:RealEstateBP>
+<fu:PropertyID>
+<fu:CadastralNumber>365</fu:CadastralNumber>
+<fu:BuildingNumber>12</fu:BuildingNumber>
+<fu:BuildingSectionNumber>3</fu:BuildingSectionNumber>
+</fu:PropertyID>
+<fu:Address>
+<fu:Street>Slakova ulica</fu:Street>
+<fu:HouseNumber>36</fu:HouseNumber>
+<fu:HouseNumberAdditional>A</fu:HouseNumberAdditional>
+<fu:Community>Trebnje</fu:Community>
+<fu:City>Trebnje</fu:City>
+<fu:PostalCode>8210</fu:PostalCode>
+</fu:Address>
+</fu:RealEstateBP>
+</fu:BPIdentifier>
+<fu:ValidityDate>1990-08-25</fu:ValidityDate>
+<fu:SoftwareSupplier>
+<fu:TaxNumber>10039953</fu:TaxNumber>
+</fu:SoftwareSupplier>
+<fu:SpecialNotes>Primer prijave poslovnega prostora</fu:SpecialNotes>
+</fu:BusinessPremise>
+<xd:Signature>
+  <xd:SignedInfo><xd:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+    <xd:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+  <xd:Reference URI="#data"><xd:Transforms><xd:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></xd:Transforms><xd:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><xd:DigestValue>HHV1S2tPlt6fYJVOxT1OXh39ClcaBFZMGQ1NnP942M0=</xd:DigestValue></xd:Reference></xd:SignedInfo><xd:SignatureValue>c3/olARiM220o6fScfAmKzI6Al3uc+9fRBe0ZW65pG2YDjna0ch6Do+vfv8Fq4nU2ZZJ7Ol0WoSB4YJdltErZMia/TkVq2qHQQJHSGtwPn2pplmPv2QqZMKr0LH126WuivSTvSERKPNNQDk6p8d5OFAdzRB3JCrzAe2NPXQ3tKjPcBwffVMkDxZzwh+gYYVrr493r8QWRta1K4wQK0g90Yozd0nmw+ozMicm3q3pDGCzkEZuBWMYJgBodxsXLaXqrts47fTVgJwfiVCOSyOlOqG7p8Gt7DyAruY9aQ8Sg7bTqbOkDEFXI68Hce1p1vLzmsVt9zOTEO8kXq0lrBXK+w==</xd:SignatureValue>
+<xd:KeyInfo><xd:X509Data><xd:X509SubjectName>CN=TESTNO PODJETJE 105,serialNumber=1,OU=10039953,OU=DavPotRacTEST,O=state-institutions,C=SI</xd:X509SubjectName><xd:X509IssuerSerial><xd:X509IssuerName>CN=Tax CA Test,O=state-institutions,C=SI</xd:X509IssuerName><xd:X509SerialNumber>3331418333528372528</xd:X509SerialNumber></xd:X509IssuerSerial></xd:X509Data></xd:KeyInfo></xd:Signature></fu:BusinessPremiseRequest>
+</soapenv:Body>
+</soapenv:Envelope>

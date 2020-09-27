@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -7,8 +9,13 @@ use Cake\ORM\Entity;
  * Company Entity
  *
  * @property string $id
+ * @property string $company_id
  * @property string $name
  * @property string $street
+ * @property string $zip
+ * @property string $city
+ * @property string $tax_no
+ * @property bool $tax_status
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
@@ -18,7 +25,6 @@ use Cake\ORM\Entity;
  */
 class Company extends Entity
 {
-
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -30,6 +36,6 @@ class Company extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false
+        'id' => false,
     ];
 }
